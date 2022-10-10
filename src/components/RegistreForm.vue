@@ -1,18 +1,9 @@
 <template>
-  <div class="signInForm fixed-center" style="max-width: 700px">
-    <div class="q-pa-md my-font">
+  <div class="signInForm q-ma-md" style="max-width: 400px">
+    <div class="q-pa-md">
       <div class="q-gutter-md row items-start">
+        <q-input filled class="text-h5 q-my-md" v-model="text" label="Name" />
         <q-input
-          clearable
-          clear-icon="close"
-          filled
-          class="text-h5 q-my-md"
-          v-model="text"
-          label="Name"
-        />
-        <q-input
-          clearable
-          clear-icon="close"
           filled
           class="text-h5 q-my-md"
           v-model="text"
@@ -20,39 +11,37 @@
         />
       </div>
       <div class="q-gutter-md row items-start">
-        <q-input 
-          clearable
-          clear-icon="close"
+        <q-input
           filled
           class="q-my-md"
-          v-model="email" 
-          type="email" hint="Please insert a valid mail"
-          label="E-mail" 
+          v-model="email"
+          type="email"
+          hint="Please insert a valid mail"
+          label="E-mail"
         />
         <q-input
-          clearable
-          clear-icon="close"
           filled
           class="text-h5 q-my-md"
           v-model="text"
-          label="User Name"   
+          label="User Name"
         />
-        <q-input v-model="password" 
-        filled 
-        label="Password"
-        :type="isPwd ? 'password' : 'text'" 
-        hint="Please insert a valid password">
-        <template v-slot:append>
-          <q-icon
-            :name="isPwd ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="isPwd = !isPwd"
-          />
-        </template>
-      </q-input>
+        <q-input
+          v-model="password"
+          filled
+          label="Password"
+          :type="isPwd ? 'password' : 'text'"
+          hint="Please insert a valid password"
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
       </div>
-     
-      
+
       <div class="q-pa-md q-gutter-sm">
         <q-btn color="primary" class="full-width" label="Submit" />
       </div>
@@ -60,18 +49,17 @@
   </div>
 </template>
 <script>
-
-import { ref } from 'vue'
+import { ref } from "vue";
 
 export default {
-  setup () {
+  setup() {
     return {
-      password: ref(''),
+      password: ref(""),
       isPwd: ref(true),
-      email: ref('')
-    }
-  }
-}
+      email: ref(""),
+    };
+  },
+};
 </script>
 <style>
 .signInForm {
