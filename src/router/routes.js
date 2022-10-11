@@ -8,6 +8,12 @@ const routes = [
       { path: "SignUp", component: () => import("components/RegistreForm.vue") },
     ]
   },
+  {
+    path: "/alt/",
+    component: () => import("layouts/LandingPage.vue"),
+  },
+  
+  
 
   // Always leave this as last one,
   // but you can also remove it

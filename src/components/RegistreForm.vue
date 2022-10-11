@@ -1,16 +1,20 @@
 <template>
-  <div class="signInForm q-ma-md" style="max-width: 400px">
+  <q-form
+        @submit.prevent="onSubmit"
+        @reset="onReset"
+        class="q-gutter-md"
+       style="max-width: 400px">   
     <div class="q-pa-md">
       <div class="q-gutter-md row items-start">
-        <q-input filled class="text-h5 q-my-md" v-model="text" label="Name" />
+        <q-input filled class="text-h5 q-my-md" v-model="name" label="Name" />
         <q-input
           filled
           class="text-h5 q-my-md"
-          v-model="text"
+          v-model="lastName"
           label="Last Name"
         />
       </div>
-      <div class="q-gutter-md row items-start">
+      <div class="q-gutter-md q-my-md row items-start">
         <q-input
           filled
           class="q-my-md"
@@ -22,7 +26,7 @@
         <q-input
           filled
           class="text-h5 q-my-md"
-          v-model="text"
+          v-model="userName"
           label="User Name"
         />
         <q-input
@@ -46,20 +50,72 @@
         <q-btn color="primary" class="full-width" label="Submit" />
       </div>
     </div>
-  </div>
+  </q-form>
 </template>
 <script>
 import { ref } from "vue";
+import { onSubmit } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
+import { useUserStore } from './../stores/user.js'
 
 export default {
-  setup() {
-    return {
-      password: ref(""),
-      isPwd: ref(true),
-      email: ref(""),
-    };
+  setup() {   
+    const name = ref('')
+    const lastName = ref ('')
+    const isPwd = ref('')
+    const email = ref('')
+    const userName = rer('')
+    const password = ref('') 
+    
+    const router = useRouter()
+    
+    const userStore = useUserStore()
+    
+    const { user } = storeToRefs(userStore)
+    
+     
+    
+    async function onSubmit() {
+    
+      try {
+    
+        await userStore.fetchUser() // here we call fetch user
+    
+        if (!user.value) {
+    
+          // redirect them to logout if the user is not there
+    
+          router.push({ path: '/auth' });
+    
+        } else {
+    
+          // continue to dashboard
+    
+          router.push({ path: '/' });
+    
+        }
+    
+      } catch (e) {
+    
+        console.log(e)
+    
+      }
+    };  
+      return {
+        name,
+        lastName,
+        password,
+        isPwd,
+        email,
+        userName
+      };
+
+  
   },
 };
+
+
 </script>
 <style>
 .signInForm {
