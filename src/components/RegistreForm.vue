@@ -2,8 +2,9 @@
   <q-form
         @submit.prevent="onSubmit"
         @reset="onReset"
-        class="q-gutter-md"
-       style="max-width: 400px">   
+        class="q-gutter-md signInForm"
+       style="max-width: 400px">
+          
     <div class="q-pa-md">
       <div class="q-gutter-md row items-start">
         <q-input filled class="text-h5 q-my-md" v-model="name" label="Name" />
@@ -47,14 +48,14 @@
       </div>
 
       <div class="q-pa-md q-gutter-sm">
-        <q-btn color="primary" class="full-width" label="Submit" />
+        <q-btn type="submit" color="primary" class="full-width" label="Submit" />
       </div>
     </div>
   </q-form>
 </template>
 <script>
 import { ref } from "vue";
-import { onSubmit } from 'vue'
+/* import { onSubmit } from 'vue' */
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useUserStore } from './../stores/user.js'
@@ -65,7 +66,7 @@ export default {
     const lastName = ref ('')
     const isPwd = ref('')
     const email = ref('')
-    const userName = rer('')
+    const userName = ref('')
     const password = ref('') 
     
     const router = useRouter()
@@ -74,17 +75,21 @@ export default {
     
     const { user } = storeToRefs(userStore)
     
-     
-    
     async function onSubmit() {
     
+       await userStore.signUp ( email.value, password.value)
       try {
-    
-        await userStore.fetchUser() // here we call fetch user
+        
+        router.push({ path: '/User' });
+
+  
+       /*  await userStore.fetchUser() // here we call fetch user
     
         if (!user.value) {
     
           // redirect them to logout if the user is not there
+
+          console.log("")
     
           router.push({ path: '/auth' });
     
@@ -92,9 +97,7 @@ export default {
     
           // continue to dashboard
     
-          router.push({ path: '/' });
-    
-        }
+        } */
     
       } catch (e) {
     
@@ -108,7 +111,8 @@ export default {
         password,
         isPwd,
         email,
-        userName
+        userName,
+        onSubmit
       };
 
   
