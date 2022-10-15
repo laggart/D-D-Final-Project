@@ -8,8 +8,8 @@
       >
         <q-input
           filled
-          v-model="UserName"
-          label="User name *"
+          v-model="email"
+          label="User e-mail *"
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'Please type something']"
         />
@@ -22,7 +22,7 @@
           lazy-rules
           :rules="[
             val => val !== null && val !== '' || 'Please type your User Name',
-            val => val > 0 && val < 100 || 'Invalid Password'
+            val => val !== null && val !== '' || 'Invalid Password'
           ]"
         />
 
@@ -37,40 +37,42 @@
   
   <script>
   import { useQuasar } from 'quasar'
+import router from 'src/router'
+import { supabase } from 'src/supabase'
   import { ref } from 'vue'
   
   export default {
     setup () {
       const $q = useQuasar()
   
-      const UserName = ref(null)
+      const email = ref(null)
       const password = ref(null)
   
       return {
-        UserName,
+        email,
         password,
   
         onSubmit () {
-          if (accept.value !== true) {
-            $q.notify({
-              color: 'red-5',
-              textColor: 'white',
-              icon: 'warning',
-              message: 'You need to accept the license and terms first'
+          async function signInWithEmail (){
+            const { data, error } = await supabase.auth.signInWithPassword({
+              email: 'email.value', 
+              password: 'password.value',
             })
           }
-          else {
+          
             $q.notify({
               color: 'green-4',
               textColor: 'white',
               icon: 'cloud_done',
               message: 'Submitted'
             })
-          }
+
+            router.push({ path: '/Alt/User'})
+          
         },
   
         onReset () {
-          UserName.value = null
+          email.value = null
           password.value = null
         }
       }

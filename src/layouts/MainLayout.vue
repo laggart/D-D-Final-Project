@@ -2,11 +2,11 @@
   <q-layout view="hHh lpR fFf" class="bg-dark">
     <q-header reveal elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar>
-        <q-toolbar-title class="my-font text-h1">
+        <q-toolbar-title class="my-font text-h3 center">
           <q-avatar>
-            <p class="text-h6 text-weight-bold">D&D</p>
+            <p class="text-h6 text-weight-bold">PQ</p>
           </q-avatar>
-          Iron D&D
+          PixelQuest
         </q-toolbar-title>
       </q-toolbar>
 

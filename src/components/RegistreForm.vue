@@ -79,8 +79,9 @@ export default {
     
        await userStore.signUp ( email.value, password.value)
       try {
-        
+        $q.notify('Please check your mail')
         router.push({ path: '/User' });
+        
 
   
        /*  await userStore.fetchUser() // here we call fetch user
