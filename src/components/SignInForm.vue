@@ -30,14 +30,15 @@
           <q-btn label="Submit" type="submit" color="primary"/>
           <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
         </div>
+        <div>forgot your password</div>
       </q-form>
   
     </div>
   </template>
   
   <script>
-  import { useQuasar } from 'quasar'
-import router from 'src/router'
+import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
 import { supabase } from 'src/supabase'
   import { ref } from 'vue'
   
@@ -47,20 +48,22 @@ import { supabase } from 'src/supabase'
   
       const email = ref(null)
       const password = ref(null)
-  
+      const router = useRouter()
+
       return {
         email,
         password,
   
         onSubmit () {
-          async function signInWithEmail (){
+          async function signIn (){
             const { data, error } = await supabase.auth.signInWithPassword({
-              email: 'email.value', 
-              password: 'password.value',
+              email: email.value, 
+              password: password.value,
             })
+            
           }
           
-            $q.notify({
+            $q.notify({ 
               color: 'green-4',
               textColor: 'white',
               icon: 'cloud_done',

@@ -3,44 +3,55 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-/* import { onMounted } from "vue"; */
+import { defineComponent } from "vue"
+import { onMounted } from "vue"
+import { storeToRefs } from 'pinia'
+import { useUserStore } from 'stores/user'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
-  name: "App",
+
+setup (props, { emit }) {
+
+  
+  const userStore = useUserStore()
+  const { user } = storeToRefs(userStore)
+  const router = useRouter()
+  onMounted(async () => {
+    console.log('mounted')
+    try {
+      await userStore.fetchUser() // here we call fetch user
+      if (!user.value) {
+  
+        // redirect them to logout if the user is not there
+  
+        console.log("No estas logeado")
+  
+        router.push({ path: '/auth' });
+  
+      } else {
+  
+        // continue to dashboard
+  
+        router.push({ path: '/Alt/User' });
+  
+      }
+  
+    } catch (e) {
+  
+      console.log(e)
+  
+    }
+    
+   })
+
+}
+
+
+  /* name: "App", */
 });
 
-/* async function onMounted() {
     
-   try {
  
-     await userStore.fetchUser() // here we call fetch user
- 
-     if (!user.value) {
- 
-       // redirect them to logout if the user is not there
-
-       console.log("")
- 
-       router.push({ path: '/auth' });
- 
-     } else {
- 
-       // continue to dashboard
- 
-       router.push({ path: '/' });
- 
-     }
- 
-   } catch (e) {
- 
-     console.log(e)
-
-      }
-  }
-  return {
-    
-  } */
-
 
 </script>

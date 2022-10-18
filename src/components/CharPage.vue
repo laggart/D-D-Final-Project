@@ -8,18 +8,79 @@
           </q-avatar>
           PixelQuest
         </q-toolbar-title>
-
-        <q-btn 
-        dense 
-        flat 
-        round 
-        icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-      <!-- drawer content -->
-    </q-drawer>
+    <q-drawer
+        v-model="drawer"
+        show-if-above
+
+        :mini="!drawer || miniState"
+        @click.capture="drawerClick"
+
+        :width="200"
+        :breakpoint="500"
+        bordered
+        class="bg-grey-3"
+      >
+        <q-scroll-area class="fit">
+          <q-list padding>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="inbox" />
+              </q-item-section>
+
+              <q-item-section>
+                Inbox
+              </q-item-section>
+            </q-item>
+
+            <q-item active clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="star" />
+              </q-item-section>
+
+              <q-item-section>
+                Star
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="send" />
+              </q-item-section>
+
+              <q-item-section>
+                Send
+              </q-item-section>
+            </q-item>
+
+            <q-item 
+            clickable 
+            v-ripple
+            @click="logOut"
+            >
+              <q-item-section avatar>
+                <q-icon name="logout" />
+              </q-item-section>
+
+              <q-item-section>
+                log-out
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-scroll-area>
+        <div class="q-mini-drawer-hide absolute" style="top: 15px; right: -17px">
+          <q-btn
+            dense
+            round
+            unelevated
+            color="secondary"
+            icon="chevron_left"
+            @click="miniState = true"
+          />
+        </div>
+      </q-drawer>
 
     <q-page-container class="column">
       <p
@@ -88,13 +149,21 @@ import { ref } from "vue";
 
 export default {
   setup() {
-    const rightDrawerOpen = ref(false);
+    const miniState = ref(false);
+    /* const { error } = await supabase.auth.signOut() */
+    
 
     return {
-      rightDrawerOpen,
-      toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
+      drawer: ref(false),
+      miniState,
+
+      drawerClick (e) {
+        if (miniState.value) {
+          miniState.value = false
+          e.stopPropagation()
+        }
       },
+
       charRace: ref(null),
       options: [
         'Human', 'Dwarf', 'Elf', 'Halfling', 'Gnome' 
@@ -105,18 +174,7 @@ export default {
     return {
       newChar: '',
       Chars: [
-       /*  {
-          Name: "Char 1",
-          deleteChar: false,
-        },
-        {
-          Name: "Char 2",
-          deleteChar: false,
-        },
-        {
-          Name: "Char 3",
-          deleteChar: false,
-        }, */
+    
       ],
     };
   },
@@ -139,8 +197,11 @@ export default {
         deleteChar: false
       })
       this.newChar = ''
-    }
+    },
+    logOut() {
+      console.log('log Out')
 
+    } 
 
   }
 };

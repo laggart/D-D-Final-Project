@@ -81,24 +81,6 @@ export default {
       try {
         $q.notify('Please check your mail')
         router.push({ path: '/User' });
-        
-
-  
-       /*  await userStore.fetchUser() // here we call fetch user
-    
-        if (!user.value) {
-    
-          // redirect them to logout if the user is not there
-
-          console.log("")
-    
-          router.push({ path: '/auth' });
-    
-        } else {
-    
-          // continue to dashboard
-    
-        } */
     
       } catch (e) {
     
@@ -123,6 +105,7 @@ export default {
 
 </script>
 <style>
+
 .signInForm {
   background-color: rgb(195, 216, 216);
   border-radius: 20px;
