@@ -58,7 +58,7 @@
             <q-item 
             clickable 
             v-ripple
-            @click="logOut"
+            @click='signOut'
             >
               <q-item-section avatar>
                 <q-icon name="logout" />
@@ -145,12 +145,20 @@
 </template>
 
 <script>
+import router from "src/router";
 import { ref } from "vue";
 
 export default {
   setup() {
     const miniState = ref(false);
-    /* const { error } = await supabase.auth.signOut() */
+    
+    const signOut = async () => {
+      const { error } = await supabase.auth.signOut()
+      console.log('log Out')
+      if (error) console.log(error)
+      console.log(signOut)
+      router.push({ path: '/' })
+    } 
     
 
     return {
@@ -169,6 +177,7 @@ export default {
         'Human', 'Dwarf', 'Elf', 'Halfling', 'Gnome' 
       ]
     };
+
   },
   data() {
     return {
@@ -198,11 +207,8 @@ export default {
       })
       this.newChar = ''
     },
-    logOut() {
-      console.log('log Out')
-
-    } 
-
+    
   }
 };
 </script>
+

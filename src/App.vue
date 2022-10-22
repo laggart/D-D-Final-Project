@@ -19,6 +19,7 @@ setup (props, { emit }) {
   const router = useRouter()
   onMounted(async () => {
     console.log('mounted')
+    console.log(user.value)
     try {
       await userStore.fetchUser() // here we call fetch user
       if (!user.value) {
@@ -27,7 +28,7 @@ setup (props, { emit }) {
   
         console.log("No estas logeado")
   
-        router.push({ path: '/auth' });
+        router.push({ path: '/SignIn' });
   
       } else {
   
