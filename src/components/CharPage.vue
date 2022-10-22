@@ -83,6 +83,14 @@
       </q-drawer>
 
     <q-page-container class="column">
+      <q-img
+        :src="url"
+        style="height: 140px; max-width: 150px"
+      >
+        <template v-slot:loading>
+          <q-spinner-gears color="white" />
+        </template>
+      </q-img>
       <p
       class="text-h4 text-center text-white my-font"
       >Character Sheet</p>
@@ -145,25 +153,51 @@
 </template>
 
 <script>
-import router from "src/router";
+import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { useQuasar } from "quasar";
+import { storeToRefs } from 'pinia'
+import { useUserStore } from './../stores/user.js'
 
 export default {
   setup() {
+    const $q = useQuasar()
+    const router = useRouter()
     const miniState = ref(false);
-    
+    const url = ref('src/assets/placeholder.png')
+    const userStore = useUserStore()
+    const { user } = storeToRefs(userStore)
+
+    console.log(user)
     const signOut = async () => {
-      const { error } = await supabase.auth.signOut()
-      console.log('log Out')
-      if (error) console.log(error)
-      console.log(signOut)
-      router.push({ path: '/' })
-    } 
-    
+      try {
+        await userStore.signOut ()
+        userStore.user = null
+  
+      }
+      catch (error) {
+        console.log(error)
+      }
+
+      $q.notify({
+            color: 'dark',
+            textColor: 'white',
+            icon: 'cloud_done',
+            message: 'You have succesfully logged out!'
+          })
+
+      router.push({ path: '/'})
+          
+    }   
 
     return {
       drawer: ref(false),
       miniState,
+      signOut,
+      url,
+      refresh () {
+        url.value = "src/assets/placeholder.png.png"
+      },
 
       drawerClick (e) {
         if (miniState.value) {

@@ -39,36 +39,37 @@
 <script>
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-import { supabase } from 'src/supabase'
 import { defineComponent, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useUserStore } from './../stores/user.js'
 
 
   export default defineComponent ({
     setup () {
       const $q = useQuasar()
-
       const email = ref(null)
       const password = ref(null)
       const router = useRouter()
+      const userStore = useUserStore()
+      const { user } = storeToRefs(userStore)
 
-
+      console.log(user)
       const onSubmit = async () => {
-          const { data, error } = await supabase.auth.signInWithPassword({
-            email: email.value,
-            password: password.value,
-          })
-          if (data) console.log(data)
-          if (error) console.log(error)
-        
-
+        try {
+          await userStore.signIn ( email.value, password.value )
           $q.notify({
             color: 'green-4',
             textColor: 'white',
             icon: 'cloud_done',
             message: 'Submitted'
           })
-
+          
           router.push({ path: '/Alt/User'})
+        }
+        catch (error) {
+          console.log(error)
+        }
+
 
         }
 
