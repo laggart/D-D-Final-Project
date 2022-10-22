@@ -12,7 +12,8 @@ const routes = [
     path: "/alt/",
     component: () => import("layouts/LandingPage.vue"),
     children: [
-      { path: "User", component: () => import("src/components/CharPage.vue") }
+      { path: "User", component: () => import("src/components/CharPage.vue") },
+      { path: "User2", component: () => import("src/components/CreatingWizard.vue") }
     ]
   },
   

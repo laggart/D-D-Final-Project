@@ -4,13 +4,12 @@
       <q-toolbar>
         <q-toolbar-title class="my-font">
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+            <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
           </q-avatar>
           PixelQuest
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
-
     <q-drawer
         v-model="drawer"
         show-if-above
@@ -80,73 +79,80 @@
             @click="miniState = true"
           />
         </div>
-      </q-drawer>
-
-    <q-page-container class="column">
-      <q-img
-        :src="url"
-        style="height: 140px; max-width: 150px"
-      >
-        <template v-slot:loading>
-          <q-spinner-gears color="white" />
-        </template>
-      </q-img>
+    </q-drawer>
+    <q-page-container>
       <p
       class="text-h4 text-center text-white my-font"
       >Character Sheet</p>
-      <div class="row q-pa-sm bg-primary">
-        <q-input 
-        class="col"
-        filled
-        bg-color="secondary"
-        v-model="newChar"
-        @keyup.enter="addChar" 
-        label="New Character Name"
-        dense
-        >
-        <template v-slot:append>
-          <q-btn
-          @click="addChar" 
-          round 
-          dense 
-          flat 
-          icon="add" />
-        </template>
-      </q-input>
-      </div>
-      <q-select filled v-model="charRace" 
-      :options="options" 
-      label="Race" />
-      <q-list 
-      separator 
-      bordered>
-        <q-item
-          v-for="(char, index) in Chars"
-          :key="char.title"
-          @click="char.deleteChar = !char.deleteChar"
-          tag="label"
-          v-ripple
-        >
-          <q-item-section avatar>
-            <q-checkbox 
-            v-model="char.deleteChar" 
-            val="teal" 
-            color="teal" 
-            />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ char.Name }}</q-item-label>
-          </q-item-section>
-          <q-item-section side>
+      <div class="fit row wrap justify-center items-center" >
+        <div class="col-6">
+          <q-img
+            :src="url"
+            style="height: 300px; max-width: 200px"
+          >
+            <template v-slot:loading>
+              <q-spinner-gears color="white" />
+            </template>
+          </q-img>
+        </div>    
+        <div class="q-pa-md">
+            <q-input 
+            filled
+            bg-color="secondary"
+            v-model="newChar"
+            @keyup.enter="addChar" 
+            label="New Character Name"
+            dense
+            >
+            <template v-slot:append>
+              <q-btn
+              @click="addChar" 
+              round 
+              dense 
+              flat 
+              icon="add" />
+            </template>
+            </q-input>
+            
+            <q-select 
+            class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
+            filled 
+            v-model="charClass" 
+            :options="options" 
+            label="Class" />
+            <q-list 
+            separator 
+            bordered>
 
-            <q-btn 
-            @click.stop="removeChar(index)"
-            round color="negative" 
-            icon="delete" 
-            size="xs" />
-          </q-item-section>
-        </q-item>
-      </q-list>
+
+              <q-item
+                v-for="(char, index) in Chars"
+                :key="char.title"
+                @click="char.deleteChar = !char.deleteChar"
+                tag="label"
+                v-ripple
+              >
+                <q-item-section avatar>
+                  <q-checkbox 
+                  v-model="char.deleteChar" 
+                  val="teal" 
+                  color="teal" 
+                  />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ char.Name }}</q-item-label>
+                  </q-item-section>
+                <q-item-section side>
+                  <q-btn 
+                  @click.stop="removeChar(index)"
+                  round color="negative" 
+                  icon="delete" 
+                  size="xs" />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
+      </div>  
       <router-view />
     </q-page-container>
   </q-layout>
@@ -196,7 +202,7 @@ export default {
       signOut,
       url,
       refresh () {
-        url.value = "src/assets/placeholder.png.png"
+        url.value = "src/assets/quasar-logo-vertical.svg"
       },
 
       drawerClick (e) {
@@ -206,9 +212,32 @@ export default {
         }
       },
 
-      charRace: ref(null),
+      charClass: ref(null),
       options: [
-        'Human', 'Dwarf', 'Elf', 'Halfling', 'Gnome' 
+      { 
+       label: 'Bard',
+       url: 'src/assets/placeholder.png', 
+      },
+      { 
+       label: 'Cleric',
+       url: '', 
+      },
+      { 
+       label: 'Fighter',
+       url: '', 
+      },
+      { 
+       label: 'Ranger',
+       url: '', 
+      },
+      { 
+       label: 'Rogue',
+       url: '', 
+      },
+      { 
+       label: 'Wizard',
+       url: '', 
+      },   
       ]
     };
 
