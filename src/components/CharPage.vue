@@ -84,7 +84,7 @@
       <p
       class="text-h4 text-center text-white my-font"
       >Character Sheet</p>
-      <div class="fit row wrap justify-center items-center" >
+      <div class=" row wrap justify-center items-center" >
         <div class="col-6">
           <q-img
             :src="url"
@@ -95,8 +95,9 @@
             </template>
           </q-img>
         </div>    
-        <div class="q-pa-md">
-            <q-input 
+        <div class="q-pa-md col-12-xs col-sm-6 q-pa-sm">
+           
+           <q-input 
             filled
             bg-color="secondary"
             v-model="newChar"
@@ -115,14 +116,77 @@
             </q-input>
             
             <q-select 
-            class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
+            class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
             filled 
+            clearable
+            v-model="charRace" 
+            :options="races" 
+            label="Race" 
+            />
+            <q-select 
+            @input-value="imageChanger"
+            class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
+            filled 
+            clearable
             v-model="charClass" 
             :options="options" 
-            label="Class" />
+            label="Class" 
+            />
+            <q-input
+            class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
+            clearable 
+            dense
+            hint="Insert value betwewn 8-15"
+            v-model="strength" 
+            label="Strength" 
+            />
+            <q-input 
+            class="col-12-xs col-sm-6 q-pa-sm bg-secondary" 
+            clearable
+            dense
+            hint="Insert value betwewn 8-15"
+            v-model="dexterity" 
+            label="Dexterity" 
+            />
+            <q-input 
+            class="col-12-xs col-sm-3 q-pa-sm bg-secondary" 
+            clearable
+            dense
+            hint="Insert value betwewn 8-15"
+            v-model="constitution" 
+            label="Constitution" 
+            />
+            <q-input 
+            class="col-12-xs col-sm-3 q-pa-sm bg-secondary" 
+            clearable
+            dense
+            hint="Insert value betwewn 8-15"
+            v-model="intelligence" 
+            label="Intelligence" 
+            />
+            <q-input
+            class="col-12-xs col-sm-3 q-pa-sm bg-secondary" 
+            clearable 
+            dense
+            hint="Insert value betwewn 8-15"
+            v-model="wisdom" 
+            label="Wisdom" 
+            />
+            <q-input 
+            class="col-12-xs col-sm-3 q-pa-sm bg-secondary" 
+            clearable
+            dense
+            hint="Insert value betwewn 8-15"
+            v-model="charisma" 
+            label="Charisma" 
+            />
             <q-list 
             separator 
             bordered>
+
+            <div>
+              <q-btn label="Submit" type="submit" color="primary"/>
+            </div>
 
 
               <q-item
@@ -201,8 +265,15 @@ export default {
       miniState,
       signOut,
       url,
-      refresh () {
-        url.value = "src/assets/quasar-logo-vertical.svg"
+      strength: ref(''),
+      dexterity: ref(''),
+      constitution: ref(''),
+      intelligence: ref(''),
+      wisdom: ref(''),
+      charisma: ref(''),
+
+      imageChanger() {
+        url.value = charClass.url
       },
 
       drawerClick (e) {
@@ -220,7 +291,7 @@ export default {
       },
       { 
        label: 'Cleric',
-       url: '', 
+       url: 'src/assets/quasar-logo-vertical.svg', 
       },
       { 
        label: 'Fighter',
@@ -238,7 +309,13 @@ export default {
        label: 'Wizard',
        url: '', 
       },   
+      ],
+
+      charRace: ref(null),
+      races: [
+        'Dwarf', 'Elf', 'Halfling', 'Human', 'Gnome'
       ]
+
     };
 
   },
