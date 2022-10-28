@@ -105,6 +105,7 @@
             label="New Character Name"
             dense
             >
+
             <template v-slot:append>
               <q-btn
               @click="addChar" 
@@ -114,20 +115,43 @@
               icon="add" />
             </template>
             </q-input>
+            <q-item
+              v-for="(char, index) in Chars"
+              :key="char.title"
+              @click="char.deleteChar = !char.deleteChar"
+              tag="label"
+              v-ripple
+            >
+              <q-item-section avatar>
+                <q-checkbox 
+                v-model="char.deleteChar" 
+                val="teal" 
+                color="teal" 
+                />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ char.Name }}</q-item-label>
+                </q-item-section>
+                <q-item-section side>
+                  <q-btn 
+                  @click.stop="removeChar(index)"
+                  round color="negative" 
+                  icon="delete" 
+                  size="xs" />
+                </q-item-section>
+            </q-item>
             
             <q-select 
             class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
             filled 
-            clearable
             v-model="charRace" 
             :options="races" 
             label="Race" 
             />
             <q-select 
-            @input-value="imageChanger"
+            @change="imageChanger()"
             class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
             filled 
-            clearable
             v-model="charClass" 
             :options="options" 
             label="Class" 
@@ -176,7 +200,6 @@
             class="col-12-xs col-sm-3 q-pa-sm bg-secondary" 
             clearable
             dense
-            hint="Insert value betwewn 8-15"
             v-model="charisma" 
             label="Charisma" 
             />
@@ -185,35 +208,13 @@
             bordered>
 
             <div>
-              <q-btn label="Submit" type="submit" color="primary"/>
+              <q-btn 
+              label="Submit" 
+              type="submit" 
+              color="teal"
+              />
             </div>
-
-
-              <q-item
-                v-for="(char, index) in Chars"
-                :key="char.title"
-                @click="char.deleteChar = !char.deleteChar"
-                tag="label"
-                v-ripple
-              >
-                <q-item-section avatar>
-                  <q-checkbox 
-                  v-model="char.deleteChar" 
-                  val="teal" 
-                  color="teal" 
-                  />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>{{ char.Name }}</q-item-label>
-                  </q-item-section>
-                <q-item-section side>
-                  <q-btn 
-                  @click.stop="removeChar(index)"
-                  round color="negative" 
-                  icon="delete" 
-                  size="xs" />
-                </q-item-section>
-              </q-item>
+              
             </q-list>
           </div>
       </div>  
@@ -224,26 +225,35 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, watch, defineComponent, reactive } from "vue";
 import { useQuasar } from "quasar";
 import { storeToRefs } from 'pinia'
 import { useUserStore } from './../stores/user.js'
 
-export default {
+export default defineComponent({
   setup() {
+
     const $q = useQuasar()
     const router = useRouter()
     const miniState = ref(false);
     const url = ref('src/assets/placeholder.png')
     const userStore = useUserStore()
     const { user } = storeToRefs(userStore)
+    const charClass = ref(null)
+    const newChar = ref('')
+    let Chars = reactive ([
 
-    console.log(user)
+      ],)
+
+
+    watch(()=> charClass.value, (newValue, oldValue)=> {
+      if (newValue) url.value = newValue.url
+    })
+
     const signOut = async () => {
       try {
         await userStore.signOut ()
         userStore.user = null
-  
       }
       catch (error) {
         console.log(error)
@@ -271,10 +281,15 @@ export default {
       intelligence: ref(''),
       wisdom: ref(''),
       charisma: ref(''),
-
-      imageChanger() {
-        url.value = charClass.url
-      },
+      charClass,
+      newChar,
+      addChar,
+      removeChar,
+      Chars,
+  /*    imageChanger(charClass) {
+          url.value = charClass.url
+        console.log(charClass)
+      }, */
 
       drawerClick (e) {
         if (miniState.value) {
@@ -283,7 +298,7 @@ export default {
         }
       },
 
-      charClass: ref(null),
+      /* charClass: ref(null), */
       options: [
       { 
        label: 'Bard',
@@ -317,17 +332,43 @@ export default {
       ]
 
     };
+    function addChar() { 
+      console.log(newChar.value)
+      Chars.push({
+        Name: newChar.value,
+        deleteChar: false
+      })
+      newChar.value = ''
+    };
 
+    function removeChar(index) {
+
+        this.$q.dialog({
+          title: 'Confirm',
+          message: 'Would you delete this character?',
+          cancel: true,
+          persistent: true
+        }).onOk(() => {
+          console.log(this.Chars)
+          this.Chars.splice(index, 1)
+          this.$q.notify('Deleted')
+        })
+        };
+
+
+
+
+    
   },
-  data() {
+/*   data() {
     return {
       newChar: '',
       Chars: [
     
       ],
-    };
-  },
-  methods: {
+    }; */
+ /*  }, */
+  /* methods: {
     removeChar(index) {
 
       this.$q.dialog({
@@ -348,7 +389,7 @@ export default {
       this.newChar = ''
     },
     
-  }
-};
+  } */
+});
 </script>
 
