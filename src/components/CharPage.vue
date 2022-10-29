@@ -70,119 +70,201 @@
             </q-img>
 
             <q-card-section>
-              <div class="text-h6">{{}}</div>
-              <div class="text-subtitle2">by Laggart</div>
+              <div class="text-h6">{{"new Char name"}}</div>
+              <div class="text-subtitle2">by {{"user.id"}}</div>
+              <q-list>
+                <q-item clickable>
+                  <q-item-section avatar>
+                    <q-icon color="primary" name="local_bar" />
+                  </q-item-section>
+  
+                  <q-item-section>
+                    <q-item-label>Race</q-item-label>
+                    <q-item-label caption>{{Chars.race}}</q-item-label>
+                  </q-item-section>
+                </q-item>
+  
+                <q-item clickable>
+                  <q-item-section avatar>
+                    <q-icon color="red" name="local_gas_station" />
+                  </q-item-section>
+  
+                  <q-item-section>
+                    <q-item-label>Str</q-item-label>
+                    <q-item-label caption>{{Chars.strength}}</q-item-label>
+                  </q-item-section>
+                </q-item>
+  
+                <q-item clickable>
+                  <q-item-section avatar>
+                    <q-icon color="amber" name="local_movies" />
+                  </q-item-section>
+  
+                  <q-item-section>
+                    <q-item-label>Dex</q-item-label>
+                    <q-item-label caption>{{Chars.dexterity}}</q-item-label>
+                  </q-item-section>
+                </q-item>
+  
+                <q-item clickable>
+                  <q-item-section avatar>
+                    <q-icon color="amber" name="local_movies" />
+                  </q-item-section>
+  
+                  <q-item-section>
+                    <q-item-label>Const</q-item-label>
+                    <q-item-label caption>{{Chars.constitution}}</q-item-label>
+                  </q-item-section>
+                </q-item>
+  
+                <q-item clickable>
+                  <q-item-section avatar>
+                    <q-icon color="amber" name="local_movies" />
+                  </q-item-section>
+  
+                  <q-item-section>
+                    <q-item-label>Int</q-item-label>
+                    <q-item-label caption>{{Chars.intelligense}}</q-item-label>
+                  </q-item-section>
+                </q-item>
+  
+                <q-item clickable>
+                  <q-item-section avatar>
+                    <q-icon color="amber" name="local_movies" />
+                  </q-item-section>
+  
+                  <q-item-section>
+                    <q-item-label>Wis</q-item-label>
+                    <q-item-label caption>{{Chars.wisdom}}</q-item-label>
+                  </q-item-section>
+                </q-item>
+  
+                <q-item clickable>
+                  <q-item-section avatar>
+                    <q-icon color="amber" name="local_movies" />
+                  </q-item-section>
+  
+                  <q-item-section>
+                    <q-item-label>Char</q-item-label>
+                    <q-item-label caption>{{Chars.charisma}}</q-item-label>
+                  </q-item-section>
+                </q-item>
+                
+              </q-list>
+
+
             </q-card-section>
 
-            <q-card-section class="q-pt-none">
-              {{ lorem }}
-            </q-card-section>
           </q-card>
         </div>
         <div class="q-pa-md col-12-xs col-sm-6 q-pa-sm">
-          <q-input
-            filled
-            bg-color="secondary"
-            v-model="newChar"
-            @keyup.enter="addChar"
-            label="New Character Name"
-            dense
-          >
-            <template v-slot:append>
-              <q-btn @click="addChar" round dense flat icon="add" />
-            </template>
-          </q-input>
-          <q-item
-            v-for="(char, index) in Chars"
-            :key="char.title"
-            @click="char.deleteChar = !char.deleteChar"
-            tag="label"
-            v-ripple
-          >
-            <q-item-section avatar>
-              <q-checkbox v-model="char.deleteChar" val="teal" color="teal" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ char.Name }}</q-item-label>
-            </q-item-section>
-            <q-item-section side>
-              <q-btn
-                @click.stop="removeChar(index)"
-                round
-                color="negative"
-                icon="delete"
-                size="xs"
-              />
-            </q-item-section>
-          </q-item>
-
-          <q-select
-            class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
-            filled
-            v-model="charRace"
-            :options="races"
-            label="Race"
-          />
-          <q-select
-            @change="imageChanger()"
-            class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
-            filled
-            v-model="charClass"
-            :options="options"
-            label="Class"
-          />
-          <q-input
-            class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
-            clearable
-            dense
-            hint="Insert value betwewn 8-15"
-            v-model="strength"
-            label="Strength"
-          />
-          <q-input
-            class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
-            clearable
-            dense
-            hint="Insert value betwewn 8-15"
-            v-model="dexterity"
-            label="Dexterity"
-          />
-          <q-input
-            class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
-            clearable
-            dense
-            hint="Insert value betwewn 8-15"
-            v-model="constitution"
-            label="Constitution"
-          />
-          <q-input
-            class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
-            clearable
-            dense
-            hint="Insert value betwewn 8-15"
-            v-model="intelligence"
-            label="Intelligence"
-          />
-          <q-input
-            class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
-            clearable
-            dense
-            hint="Insert value betwewn 8-15"
-            v-model="wisdom"
-            label="Wisdom"
-          />
-          <q-input
-            class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
-            clearable
-            dense
-            v-model="charisma"
-            label="Charisma"
-          />
-          <q-list separator bordered>
-            <div>
-              <q-btn label="Submit" type="submit" color="teal" />
-            </div>
-          </q-list>
+          <q-form @submit="addChar">
+            <q-input
+              class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
+              filled
+              clearable
+              dense
+              bg-color="secondary"
+              v-model="charName"
+              label="New Character Name"
+            >
+            
+              <!-- <template v-slot:append>
+                <q-btn @click="charName" round dense flat icon="add" />
+              </template> -->
+            </q-input>
+           <!--  <q-item
+              v-for="(char, index) in Chars"
+              :key="char.title"
+              @click="char.deleteChar = !char.deleteChar"
+              tag="label"
+              v-ripple
+            >
+              <q-item-section avatar>
+                <q-checkbox v-model="char.deleteChar" val="teal" color="teal" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ char.name }}</q-item-label>
+              </q-item-section>
+              <q-item-section side>
+                <q-btn
+                  @click.stop="removeChar(index)"
+                  round
+                  color="negative"
+                  icon="delete"
+                  size="xs"
+                />
+              </q-item-section>
+            </q-item> -->
+  
+            <q-select
+              class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
+              filled
+              v-model="charRace"
+              :options="races"
+              label="Race"
+            />
+            <q-select
+              @change="imageChanger()"
+              class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
+              filled
+              v-model="charClass"
+              :options="options"
+              label="Class"
+            />
+            <q-input
+              class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
+              clearable
+              dense
+              hint="Insert value betwewn 8-15"
+              v-model="strength"
+              label="Strength"
+            />
+            <q-input
+              class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
+              clearable
+              dense
+              hint="Insert value betwewn 8-15"
+              v-model="dexterity"
+              label="Dexterity"
+            />
+            <q-input
+              class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
+              clearable
+              dense
+              hint="Insert value betwewn 8-15"
+              v-model="constitution"
+              label="Constitution"
+            />
+            <q-input
+              class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
+              clearable
+              dense
+              hint="Insert value betwewn 8-15"
+              v-model="intelligence"
+              label="Intelligence"
+            />
+            <q-input
+              class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
+              clearable
+              dense
+              hint="Insert value betwewn 8-15"
+              v-model="wisdom"
+              label="Wisdom"
+            />
+            <q-input
+              class="col-12-xs col-sm-3 q-pa-sm bg-secondary"
+              clearable
+              dense
+              v-model="charisma"
+              label="Charisma"
+            />
+            <q-list separator bordered>
+              <div>
+                <q-btn label="Submit" type="submit" color="teal" />
+              </div>
+            </q-list>  
+          </q-form>
         </div>
       </div>
       <router-view />
@@ -196,6 +278,9 @@ import { ref, watch, defineComponent, reactive } from "vue";
 import { useQuasar } from "quasar";
 import { storeToRefs } from "pinia";
 import { useUserStore } from "./../stores/user.js";
+import { onMounted } from "vue";
+import { useCharStore } from "./../stores/mychars.js";
+/* import { useCharStore } from "./../stores/mychars.js" */
 
 export default defineComponent({
   setup() {
@@ -204,9 +289,50 @@ export default defineComponent({
     const miniState = ref(false);
     const url = ref("./src/assets/placeholder.png");
     const userStore = useUserStore();
+    const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
+    const charName = ref("")
     const charClass = ref(null);
-    const newChar = ref("");
+    const newChar = ref({});
+    const charRace = ref(null);
+    const strength = ref("")
+    const dexterity = ref("")
+    const constitution = ref("")
+    const intelligence = ref("")
+    const wisdom = ref("")
+    const charisma = ref("")
+    const addChar = async () => {
+          const newChar = {
+            name: charName.value,
+            race: charRace.value,
+            class: charClass.value,
+            strength: strength.value,
+            dexterity: dexterity.value, 
+            constitution: constitution.value, 
+            intelligence: intelligence.value,
+            wisdom: wisdom.value,
+            charisma: charisma.value,
+            deleteChar: false,
+          };
+          try {
+          await charStore.createChars (newChar);
+          await charStore.fetchChars ();
+          charName.value
+        } catch (error) {
+          console.log(error)
+        };       
+      };
+
+    const removeChar = async(charId) => {
+      try {
+        await charStore.deleteChar(charId)
+        await charStore.fetchChars()       
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
+
     let Chars = reactive([]);
 
     watch(
@@ -234,17 +360,28 @@ export default defineComponent({
       router.push({ path: "/" });
     };
 
+    onMounted(async () => {
+      try {
+        await charStore.fetchChars()
+      }
+      catch(error){
+        console.log(error)
+      }
+    });
+
+
+
     return {
       drawer: ref(false),
       miniState,
       signOut,
       url,
-      strength: ref(""),
-      dexterity: ref(""),
-      constitution: ref(""),
-      intelligence: ref(""),
-      wisdom: ref(""),
-      charisma: ref(""),
+      strength,
+      dexterity,
+      constitution,
+      intelligence,
+      wisdom,
+      charisma,
       charClass,
       newChar,
       addChar,
@@ -295,16 +432,25 @@ export default defineComponent({
       charRace: ref(null),
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
     };
-    function addChar() {
+    /* function addChar() {
+      
       console.log(newChar.value);
       Chars.push({
-        Name: newChar.value,
+        name: newChar.value,
+        race: charRace.value,
+        class: charClass.value,
+        strength: strength.value,
+        dexterity: dexterity.value, 
+        constitution: constitution.value, 
+        intelligence: intelligence.value,
+        wisdom: wisdom.value,
+        charisma: charisma.value,
         deleteChar: false,
       });
       newChar.value = "";
-    }
+    } */
 
-    function removeChar(index) {
+   /*  function removeChar(index) {
       this.$q
         .dialog({
           title: "Confirm",
@@ -317,7 +463,8 @@ export default defineComponent({
           this.Chars.splice(index, 1);
           this.$q.notify("Deleted");
         });
-    }
+    } */
+
   },
   /*   data() {
     return {
