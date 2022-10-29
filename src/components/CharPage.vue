@@ -274,33 +274,32 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { ref, watch, defineComponent, reactive } from "vue";
+import { ref, watch, defineComponent, reactive, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import { storeToRefs } from "pinia";
 import { useUserStore } from "./../stores/user.js";
-import { onMounted } from "vue";
 import { useCharStore } from "./../stores/mychars.js";
-/* import { useCharStore } from "./../stores/mychars.js" */
 
 export default defineComponent({
   setup() {
     const $q = useQuasar();
     const router = useRouter();
     const miniState = ref(false);
-    const url = ref("./src/assets/placeholder.png");
+    const url = ref("../src/assets/placeholder.png");
     const userStore = useUserStore();
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
-    const charName = ref("")
+    const { characters } = storeToRefs(charStore); 
+    const charName = ref("");
     const charClass = ref(null);
     const newChar = ref({});
     const charRace = ref(null);
-    const strength = ref("")
-    const dexterity = ref("")
-    const constitution = ref("")
-    const intelligence = ref("")
-    const wisdom = ref("")
-    const charisma = ref("")
+    const strength = ref("");
+    const dexterity = ref("");
+    const constitution = ref("");
+    const intelligence = ref("");
+    const wisdom = ref("");
+    const charisma = ref("");
     const addChar = async () => {
           const newChar = {
             user_id: user.value.id,
@@ -316,9 +315,9 @@ export default defineComponent({
             deleteChar: false,
           };
           try {
-          await charStore.createChars (newChar);
-          await charStore.fetchChars ();
-          charName.value
+          await charStore.createChars(newChar);
+          await charStore.fetchChars();
+          charName.value = "";
         } catch (error) {
           console.log(error)
         };       

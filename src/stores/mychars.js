@@ -33,7 +33,7 @@ export const useCharStore = defineStore("characters", {
           intelligence: newChar.intelligence.value,
           wisdom: newChar.wisdom.value,
           charisma: newChar.charisma.value,
-          /* favourite: false, */         
+          favourite: false,         
         })
         .select()
 
