@@ -60,10 +60,14 @@
     </q-drawer>
     <q-page-container>
       <p class="text-h4 text-center text-white my-font">Character Sheet</p>
-      <div class="row wrap justify-center items-center">
-        <div class="q-pa-md row items-start q-gutter-md col-6">
+      <div class="row justify-around items-start">
+        <div class="q-pa-md row q-gutter-md col-auto">
           <q-card flat bordered class="my-card">
-            <q-img :src="url" style="height: 300px; max-width: 300px">
+            <q-img 
+            :src="url" 
+            style="height: 200px; max-width: 350px"
+            fit="contain"
+            >
               <template v-slot:loading>
                 <q-spinner-gears color="white" />
               </template>
@@ -72,7 +76,9 @@
             <q-card-section>
               <div class="text-h6">{{"new Char name"}}</div>
               <div class="text-subtitle2">by {{"user.id"}}</div>
-              <q-list>
+              <q-list
+              class="fit row wrap justify-start items-start content-start"
+              >
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="primary" name="local_bar" />
