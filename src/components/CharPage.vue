@@ -303,6 +303,7 @@ export default defineComponent({
     const charisma = ref("")
     const addChar = async () => {
           const newChar = {
+            user_id: user.value.id,
             name: charName.value,
             race: charRace.value,
             class: charClass.value,
