@@ -23,16 +23,16 @@ export const useCharStore = defineStore("characters", {
         const { error } = await supabase
         .from('characters')
         .insert({
-          user_id: newChar.user_id,  
-          name: newChar.charName.value, 
-          race: newChar.charRace.value, 
-          class: newChar.charClass.value, 
-          strength: newChar.strength.value, 
-          dexterity: newChar.dexterity.value, 
-          constitution: newChar.constitution.value, 
-          intelligence: newChar.intelligence.value,
-          wisdom: newChar.wisdom.value,
-          charisma: newChar.charisma.value,
+          user_id: user_id,  
+          name: charName, 
+          race: charRace, 
+          class: charClass, 
+          strength: strength, 
+          dexterity: dexterity, 
+          constitution: constitution, 
+          intelligence: intelligence,
+          wisdom: wisdom,
+          charisma: charisma,
           favourite: false,         
         })
         .select()
