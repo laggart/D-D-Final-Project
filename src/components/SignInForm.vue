@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md q-ma-md signInForm" style="max-width: 400px">
+  <div class="q-pa-md q-ma-md signInForm fixed-center" style="min-width: 300px">
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
