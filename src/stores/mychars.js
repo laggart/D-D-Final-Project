@@ -1,5 +1,3 @@
-
-
 import { defineStore } from 'pinia';
 import { supabase } from '../supabase';
 
@@ -7,7 +5,6 @@ export const useCharStore = defineStore("characters", {
   state: () => ({
     characters: null,
   }),
-
   actions: {
     async fetchChars () {
       const { data: characters } = await supabase
@@ -17,13 +14,13 @@ export const useCharStore = defineStore("characters", {
 
       this.characters = characters;
     },
-
     async createChars(newChar) {
       try {
-        const { error } = await supabase
+        console.log(newChar)
+        const { data, error } = await supabase
         .from('characters')
         .insert({
-          user_id: user_id,  
+          user_id: user.value.id,  
           name: charName, 
           race: charRace, 
           class: charClass, 

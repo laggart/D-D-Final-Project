@@ -288,30 +288,30 @@ import { useCharStore } from "./../stores/mychars.js";
 
 export default defineComponent({
   setup() {
-    const $q = useQuasar();
-    const router = useRouter();
-    const miniState = ref(false);
-    const url = ref("./../src/assets/placeholder.png");
-    const userStore = useUserStore();
-    const charStore = useCharStore();
-    const { user } = storeToRefs(userStore);
-    const { characters } = storeToRefs(charStore); 
-    const charName = ref("");
-    const charClass = ref(null);
-    const newChar = ref({});
-    const charRace = ref(null);
-    const strength = ref("");
-    const dexterity = ref("");
-    const constitution = ref("");
-    const intelligence = ref("");
-    const wisdom = ref("");
-    const charisma = ref("");
+    const $q = useQuasar()
+    const router = useRouter()
+    const miniState = ref(false)
+    const url = ref("./../src/assets/placeholder.png")
+    const userStore = useUserStore()
+    const charStore = useCharStore()
+    const { user } = storeToRefs(userStore)
+    const { characters } = storeToRefs(charStore) 
+    const charName = ref("")
+    const charClass = ref(null)
+    const newChar = ref({})
+    const charRace = ref(null)
+    const strength = ref("")
+    const dexterity = ref("")
+    const constitution = ref("")
+    const intelligence = ref("")
+    const wisdom = ref("")
+    const charisma = ref("")
     const addChar = async () => {
           const newChar = {
             user_id: user.value.id,
-            name: charName.value,
-            race: charRace.value,
-            class: charClass.value,
+            charName: charName.value,
+            charRace: charRace.value,
+            class: charClass.value.label,
             strength: strength.value,
             dexterity: dexterity.value, 
             constitution: constitution.value, 
@@ -319,14 +319,15 @@ export default defineComponent({
             wisdom: wisdom.value,
             charisma: charisma.value,
             deleteChar: false,
-          };
-          try {
+          }
+          
+          try {      
           await charStore.createChars(newChar);
           await charStore.fetchChars();
           charName.value = "";
         } catch (error) {
           console.log(error)
-        };       
+        }      
       };
 
     const removeChar = async(charId) => {
@@ -376,7 +377,6 @@ export default defineComponent({
     });
 
 
-
     return {
       drawer: ref(false),
       miniState,
@@ -393,12 +393,9 @@ export default defineComponent({
       addChar,
       removeChar,
       Chars,
-      lorem:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      /*    imageChanger(charClass) {
-          url.value = charClass.url
-        console.log(charClass)
-      }, */
+      characters,
+      charName,
+      charRace,
 
       drawerClick(e) {
         if (miniState.value) {
@@ -434,8 +431,6 @@ export default defineComponent({
           url: "",
         },
       ],
-
-      charRace: ref(null),
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
     };
     /* function addChar() {
