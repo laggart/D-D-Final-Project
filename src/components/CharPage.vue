@@ -62,7 +62,7 @@
       <p class="text-h4 text-center text-white my-font">Character Sheet</p>
       <div class="row justify-around items-start">
         <div class="q-pa-md row q-gutter-md col-auto">
-          <q-card flat bordered class="my-card">
+          <q-card flat bordered class="my-card q-pt-md">
             <q-img 
             :src="url" 
             style="height: 200px; max-width: 350px"
@@ -412,23 +412,23 @@ export default defineComponent({
       options: [
         {
           label: "Bard",
-          url: "./src/assets/placeholder.png",
+          url: "./src/assets/bard.png",
         },
         {
           label: "Cleric",
-          url: "./src/assets/quasar-logo-vertical.svg",
+          url: "./src/assets/cleric.png",
         },
         {
           label: "Fighter",
-          url: "",
+          url: "./src/assets/fighter.png",
         },
         {
           label: "Ranger",
-          url: "",
+          url: "./src/assets/quasar-logo-vertical.svg",
         },
         {
           label: "Rogue",
-          url: "",
+          url: "./src/assets/placeholder.png",
         },
         {
           label: "Wizard",
