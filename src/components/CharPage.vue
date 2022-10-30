@@ -81,7 +81,7 @@
               >
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="primary" name="local_bar" />
+                    <q-icon color="dark" name="las la-atom" />
                   </q-item-section>
   
                   <q-item-section>
@@ -92,7 +92,7 @@
   
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="red" name="local_gas_station" />
+                    <q-icon color="dark" name="las la-dumbbell" />
                   </q-item-section>
   
                   <q-item-section>
@@ -103,7 +103,7 @@
   
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="amber" name="local_movies" />
+                    <q-icon color="dark" name="las la-fist-raised" />
                   </q-item-section>
   
                   <q-item-section>
@@ -114,7 +114,7 @@
   
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="amber" name="local_movies" />
+                    <q-icon color="dark" name="las la-heart" />
                   </q-item-section>
   
                   <q-item-section>
@@ -125,18 +125,18 @@
   
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="amber" name="local_movies" />
+                    <q-icon color="dark" name="las la-brain" />
                   </q-item-section>
   
                   <q-item-section>
-                    <q-item-label>Int</q-item-label>
+                    <q-item-label>Int.</q-item-label>
                     <q-item-label caption>{{Chars.intelligense}}</q-item-label>
                   </q-item-section>
                 </q-item>
   
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="amber" name="local_movies" />
+                    <q-icon color="dark" name="las la-lightbulb" />
                   </q-item-section>
   
                   <q-item-section>
@@ -147,7 +147,7 @@
   
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="amber" name="local_movies" />
+                    <q-icon color="dark" name="las la-laugh-beam" />
                   </q-item-section>
   
                   <q-item-section>
@@ -267,7 +267,11 @@
             />
             <q-list separator bordered>
               <div>
-                <q-btn label="Submit" type="submit" color="teal" />
+                <q-btn 
+                label="Submit" 
+                type="submit" 
+                color="teal" 
+                />
               </div>
             </q-list>  
           </q-form>
@@ -500,9 +504,5 @@ export default defineComponent({
 });
 </script>
 <style lang="sass" scoped>
-.my-card
-  width: 100%
-  max-width: 300px
-  background-color: $dark
-  color: white
+
 </style>

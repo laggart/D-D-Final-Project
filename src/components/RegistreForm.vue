@@ -2,7 +2,7 @@
   <q-form
         @submit.prevent="onSubmit"
         @reset="onReset"
-        class="q-gutter-md signInForm"
+        class="q-gutter-md glass "
        style="max-width: 400px">
           
     <div class="q-pa-md">

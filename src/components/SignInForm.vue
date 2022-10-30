@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md q-ma-md signInForm fixed-center" style="min-width: 300px">
+  <div class="q-pa-md q-ma-md glass fixed-center" style="min-width: 300px">
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
@@ -21,14 +21,18 @@
         ]"
       />
 
-      <div>
-        <q-btn label="Submit" type="submit" color="primary" />
+      <div class="row justify-center">
+        <q-btn 
+        label="Submit" 
+        type="submit" 
+        color="primary" 
+        />
         <q-btn
           label="Reset"
           type="reset"
           color="primary"
-          flat
-          class="q-ml-sm"
+          outline
+          class="q-ml-sm "
         />
       </div>
       <div>forgot your password</div>
@@ -52,6 +56,8 @@ import { useUserStore } from './../stores/user.js'
       const router = useRouter()
       const userStore = useUserStore()
       const { user } = storeToRefs(userStore)
+      
+
 
       console.log(user)
       const onSubmit = async () => {
@@ -90,8 +96,8 @@ import { useUserStore } from './../stores/user.js'
   })
 </script>
 <style>
-.signInForm {
+/* .signInForm {
   background-color: rgb(195, 216, 216);
   border-radius: 20px;
-}
+} */
 </style>
