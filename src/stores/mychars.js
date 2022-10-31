@@ -16,11 +16,11 @@ export const useCharStore = defineStore("characters", {
     },
     async createChars(newChar) {
       try {
-        /* console.log(newChar) */
+        console.log(newChar)
         const { data, error } = await supabase
         .from('characters')
         .insert({
-          user_id: user_id,  
+          user_id: newChar.user_id,  
           name: newChar.charName, 
           race: newChar.charRace, 
           class: newChar.charClass, 
@@ -32,7 +32,7 @@ export const useCharStore = defineStore("characters", {
           charisma: newChar.charisma,
           favourite: false,         
         })
-        console.log(strength)
+        
         .select()
 
       }

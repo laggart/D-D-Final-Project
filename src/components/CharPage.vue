@@ -424,7 +424,7 @@ export default defineComponent({
         },
         {
           label: "Ranger",
-          url: "./src/assets/quasar-logo-vertical.svg",
+          url: "./src/assets/ranger.png",
         },
         {
           label: "Rogue",
@@ -432,7 +432,7 @@ export default defineComponent({
         },
         {
           label: "Wizard",
-          url: "",
+          url: "./src/assets/quasar-logo-vertical.svg",
         },
       ],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
