@@ -96,6 +96,10 @@
             </q-item>
           </q-list>
         </q-card-section>
+        <q-card-actions align="right">
+          <q-btn dense flat round color="dark" icon="las la-edit" />
+          <q-btn dense flat round color="dark" icon="las la-trash" />
+        </q-card-actions>
       </q-card>
 </template>
 

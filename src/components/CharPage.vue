@@ -1,63 +1,5 @@
 <template>
   <q-layout view="hHh LpR fFf">
-<!--      <q-header class="bg-primary text-white qmb-sm">
-      <q-toolbar>
-        <q-toolbar-title class="my-font">
-          <q-avatar>
-            <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-          </q-avatar>
-          PixelQuest
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-header> -->
-<!--     <q-drawer
-      v-model="drawer"
-      show-if-above
-      :mini="!drawer || miniState"
-      @click.capture="drawerClick"
-      :width="200"
-      :breakpoint="500"
-      bordered
-      class="bg-grey-3"
-    >
-      <q-scroll-area class="fit">
-        <q-list padding>
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="inbox" />
-            </q-item-section>
-
-            <q-item-section> My Characters </q-item-section>
-          </q-item>
-
-          <q-item active clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="star" />
-            </q-item-section>
-
-            <q-item-section> Favourites </q-item-section>
-          </q-item>
-
-          <q-item clickable v-ripple @click="signOut">
-            <q-item-section avatar>
-              <q-icon name="logout" />
-            </q-item-section>
-
-            <q-item-section> log-out </q-item-section>
-          </q-item>
-        </q-list>
-      </q-scroll-area>
-      <div class="q-mini-drawer-hide absolute" style="top: 15px; right: -17px">
-        <q-btn
-          dense
-          round
-          unelevated
-          color="secondary"
-          icon="chevron_left"
-          @click="miniState = true"
-        />
-      </div>
-    </q-drawer> -->
     <q-page-container>
       <p class="text-h4 text-center text-white my-font">Character Sheet</p>
       <div class="row justify-around items-start">
@@ -114,7 +56,7 @@
 
                 <q-item clickable>
                   <q-item-section avatar>
-                    <q-icon color="dark" name="las la-heart" />
+                    <q-icon color="dark" name="lar la-heart" />
                   </q-item-section>
 
                   <q-item-section>
@@ -287,7 +229,6 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const router = useRouter();
-   /*  const miniState = ref(false); */
     const url = ref("./../src/assets/placeholder.png");
     const userStore = useUserStore();
     const charStore = useCharStore();
@@ -345,24 +286,6 @@ export default defineComponent({
       }
     );
 
-  /*   const signOut = async () => {
-      try {
-        await userStore.signOut();
-        userStore.user = null;
-      } catch (error) {
-        console.log(error);
-      }
-
-      $q.notify({
-        color: "dark",
-        textColor: "white",
-        icon: "cloud_done",
-        message: "You have succesfully logged out!",
-      });
-
-      router.push({ path: "/" });
-    }; */
-
     onMounted(async () => {
       try {
         await charStore.fetchChars();
@@ -372,9 +295,6 @@ export default defineComponent({
     });
 
     return {
-     /*  drawer: ref(false),
-      miniState, */
-      /* signOut, */
       url,
       strength,
       dexterity,
@@ -391,14 +311,6 @@ export default defineComponent({
       charName,
       charRace,
 
-     /*  drawerClick(e) {
-        if (miniState.value) {
-          miniState.value = false;
-          e.stopPropagation();
-        }
-      }, */
-
-      /* charClass: ref(null), */
       options: [
         {
           label: "Bard",
