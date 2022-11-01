@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fFf">
-     <q-header class="bg-primary text-white qmb-sm">
+<!--      <q-header class="bg-primary text-white qmb-sm">
       <q-toolbar>
         <q-toolbar-title class="my-font">
           <q-avatar>
@@ -9,8 +9,8 @@
           PixelQuest
         </q-toolbar-title>
       </q-toolbar>
-    </q-header>
-    <q-drawer
+    </q-header> -->
+<!--     <q-drawer
       v-model="drawer"
       show-if-above
       :mini="!drawer || miniState"
@@ -57,7 +57,7 @@
           @click="miniState = true"
         />
       </div>
-    </q-drawer>
+    </q-drawer> -->
     <q-page-container>
       <p class="text-h4 text-center text-white my-font">Character Sheet</p>
       <div class="row justify-around items-start">
@@ -287,7 +287,7 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const router = useRouter();
-    const miniState = ref(false);
+   /*  const miniState = ref(false); */
     const url = ref("./../src/assets/placeholder.png");
     const userStore = useUserStore();
     const charStore = useCharStore();
@@ -345,7 +345,7 @@ export default defineComponent({
       }
     );
 
-    const signOut = async () => {
+  /*   const signOut = async () => {
       try {
         await userStore.signOut();
         userStore.user = null;
@@ -361,7 +361,7 @@ export default defineComponent({
       });
 
       router.push({ path: "/" });
-    };
+    }; */
 
     onMounted(async () => {
       try {
@@ -372,9 +372,9 @@ export default defineComponent({
     });
 
     return {
-      drawer: ref(false),
-      miniState,
-      signOut,
+     /*  drawer: ref(false),
+      miniState, */
+      /* signOut, */
       url,
       strength,
       dexterity,
@@ -391,12 +391,12 @@ export default defineComponent({
       charName,
       charRace,
 
-      drawerClick(e) {
+     /*  drawerClick(e) {
         if (miniState.value) {
           miniState.value = false;
           e.stopPropagation();
         }
-      },
+      }, */
 
       /* charClass: ref(null), */
       options: [
