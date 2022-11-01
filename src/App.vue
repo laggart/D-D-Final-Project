@@ -13,7 +13,8 @@ export default defineComponent({
 
 setup (props, { emit }) {
 
-  
+  //TODO DO SUSTITUIR METODO POR METATAG DE ROUTER VUE || PREGUNTAR A PABLO
+  /* 
   const userStore = useUserStore()
   const { user } = storeToRefs(userStore)
   const router = useRouter()
@@ -44,7 +45,7 @@ setup (props, { emit }) {
   
     }
     
-   })
+   }) */
 
 }
 

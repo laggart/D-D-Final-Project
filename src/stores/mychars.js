@@ -23,7 +23,7 @@ export const useCharStore = defineStore("characters", {
           user_id: newChar.user_id,  
           name: newChar.charName, 
           race: newChar.charRace, 
-          class: newChar.charClass, 
+          class: newChar.class, 
           strength: newChar.strength, 
           dexterity: newChar.dexterity, 
           constitution: newChar.constitution, 
@@ -41,6 +41,16 @@ export const useCharStore = defineStore("characters", {
       }
     }
 
-  }
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: "characters",
+        storage: localStorage,
+      },
+    ],
+  },
 
 });
+

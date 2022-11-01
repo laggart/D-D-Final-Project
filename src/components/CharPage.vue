@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fFf">
-    <q-header class="bg-primary text-white qmb-sm">
+     <q-header class="bg-primary text-white qmb-sm">
       <q-toolbar>
         <q-toolbar-title class="my-font">
           <q-avatar>
@@ -63,10 +63,10 @@
       <div class="row justify-around items-start">
         <div class="q-pa-md row q-gutter-md col-auto">
           <q-card flat bordered class="my-card q-pt-md">
-            <q-img 
-            :src="url" 
-            style="height: 200px; max-width: 350px"
-            fit="contain"
+            <q-img
+              :src="url"
+              style="height: 200px; max-width: 350px"
+              fit="contain"
             >
               <template v-slot:loading>
                 <q-spinner-gears color="white" />
@@ -74,93 +74,89 @@
             </q-img>
 
             <q-card-section>
-              <div class="text-h6">{{"new Char name"}}</div>
-              <div class="text-subtitle2">by {{"user.id"}}</div>
+              <div class="text-h6">{{ charName }}</div>
+              <div class="text-subtitle2">by {{ "user.email" }}</div>
               <q-list
-              class="fit row wrap justify-start items-start content-start"
+                class="fit row wrap justify-start items-start content-start"
               >
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="dark" name="las la-atom" />
                   </q-item-section>
-  
+
                   <q-item-section>
                     <q-item-label>Race</q-item-label>
-                    <q-item-label caption>{{Chars.race}}</q-item-label>
+                    <q-item-label caption>{{ charRace }}</q-item-label>
                   </q-item-section>
                 </q-item>
-  
+
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="dark" name="las la-dumbbell" />
                   </q-item-section>
-  
+
                   <q-item-section>
                     <q-item-label>Str</q-item-label>
-                    <q-item-label caption>{{Chars.strength}}</q-item-label>
+                    <q-item-label caption>{{ strength }}</q-item-label>
                   </q-item-section>
                 </q-item>
-  
+
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="dark" name="las la-fist-raised" />
                   </q-item-section>
-  
+
                   <q-item-section>
                     <q-item-label>Dex</q-item-label>
-                    <q-item-label caption>{{Chars.dexterity}}</q-item-label>
+                    <q-item-label caption>{{ dexterity }}</q-item-label>
                   </q-item-section>
                 </q-item>
-  
+
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="dark" name="las la-heart" />
                   </q-item-section>
-  
+
                   <q-item-section>
                     <q-item-label>Const</q-item-label>
-                    <q-item-label caption>{{Chars.constitution}}</q-item-label>
+                    <q-item-label caption>{{ constitution }}</q-item-label>
                   </q-item-section>
                 </q-item>
-  
+
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="dark" name="las la-brain" />
                   </q-item-section>
-  
+
                   <q-item-section>
                     <q-item-label>Int.</q-item-label>
-                    <q-item-label caption>{{Chars.intelligense}}</q-item-label>
+                    <q-item-label caption>{{ intelligence }}</q-item-label>
                   </q-item-section>
                 </q-item>
-  
+
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="dark" name="las la-lightbulb" />
                   </q-item-section>
-  
+
                   <q-item-section>
                     <q-item-label>Wis</q-item-label>
-                    <q-item-label caption>{{Chars.wisdom}}</q-item-label>
+                    <q-item-label caption>{{ wisdom }}</q-item-label>
                   </q-item-section>
                 </q-item>
-  
+
                 <q-item clickable>
                   <q-item-section avatar>
                     <q-icon color="dark" name="las la-laugh-beam" />
                   </q-item-section>
-  
+
                   <q-item-section>
                     <q-item-label>Char</q-item-label>
-                    <q-item-label caption>{{Chars.charisma}}</q-item-label>
+                    <q-item-label caption>{{ charisma }}</q-item-label>
                   </q-item-section>
                 </q-item>
-                
               </q-list>
-
-
             </q-card-section>
-
           </q-card>
         </div>
         <div class="q-pa-md col-12-xs col-sm-6 q-pa-sm">
@@ -174,12 +170,11 @@
               v-model="charName"
               label="New Character Name"
             >
-            
               <!-- <template v-slot:append>
                 <q-btn @click="charName" round dense flat icon="add" />
               </template> -->
             </q-input>
-           <!--  <q-item
+            <!--  <q-item
               v-for="(char, index) in Chars"
               :key="char.title"
               @click="char.deleteChar = !char.deleteChar"
@@ -202,10 +197,11 @@
                 />
               </q-item-section>
             </q-item> -->
-  
+
             <q-select
               class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
               filled
+              clearable
               v-model="charRace"
               :options="races"
               label="Race"
@@ -214,6 +210,7 @@
               @change="imageChanger()"
               class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
               filled
+              clearable
               v-model="charClass"
               :options="options"
               label="Class"
@@ -267,13 +264,9 @@
             />
             <q-list separator bordered>
               <div>
-                <q-btn 
-                label="Submit" 
-                type="submit" 
-                color="teal" 
-                />
+                <q-btn label="Submit" type="submit" color="teal" />
               </div>
-            </q-list>  
+            </q-list>
           </q-form>
         </div>
       </div>
@@ -292,57 +285,56 @@ import { useCharStore } from "./../stores/mychars.js";
 
 export default defineComponent({
   setup() {
-    const $q = useQuasar()
-    const router = useRouter()
-    const miniState = ref(false)
-    const url = ref("./../src/assets/placeholder.png")
-    const userStore = useUserStore()
-    const charStore = useCharStore()
-    const { user } = storeToRefs(userStore)
-    const { characters } = storeToRefs(charStore) 
-    const charName = ref("")
-    const charClass = ref(null)
-    const newChar = ref({})
-    const charRace = ref(null)
-    const strength = ref("")
-    const dexterity = ref("")
-    const constitution = ref("")
-    const intelligence = ref("")
-    const wisdom = ref("")
-    const charisma = ref("")
+    const $q = useQuasar();
+    const router = useRouter();
+    const miniState = ref(false);
+    const url = ref("./../src/assets/placeholder.png");
+    const userStore = useUserStore();
+    const charStore = useCharStore();
+    const { user } = storeToRefs(userStore);
+    const { characters } = storeToRefs(charStore);
+    const charName = ref("");
+    const charClass = ref(null);
+    const newChar = ref({});
+    const charRace = ref(null);
+    const strength = ref("");
+    const dexterity = ref("");
+    const constitution = ref("");
+    const intelligence = ref("");
+    const wisdom = ref("");
+    const charisma = ref("");
     const addChar = async () => {
-          const newChar = {
-            user_id: user.value.id,
-            charName: charName.value,
-            charRace: charRace.value,
-            class: charClass.value.label,
-            strength: strength.value,
-            dexterity: dexterity.value, 
-            constitution: constitution.value, 
-            intelligence: intelligence.value,
-            wisdom: wisdom.value,
-            charisma: charisma.value,
-            deleteChar: false,
-          }
-          
-          try {      
-          await charStore.createChars(newChar);
-          await charStore.fetchChars();
-          charName.value = "";
-        } catch (error) {
-          console.log(error)
-        }      
+      const newChar = {
+        user_id: user.value.id,
+        charName: charName.value,
+        charRace: charRace.value,
+        class: charClass.value.label,
+        strength: strength.value,
+        dexterity: dexterity.value,
+        constitution: constitution.value,
+        intelligence: intelligence.value,
+        wisdom: wisdom.value,
+        charisma: charisma.value,
+        deleteChar: false,
       };
 
-    const removeChar = async(charId) => {
       try {
-        await charStore.deleteChar(charId)
-        await charStore.fetchChars()       
+        await charStore.createChars(newChar);
+        await charStore.fetchChars();
+        charName.value = "";
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
+    const removeChar = async (charId) => {
+      try {
+        await charStore.deleteChar(charId);
+        await charStore.fetchChars();
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     let Chars = reactive([]);
 
@@ -373,13 +365,11 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        await charStore.fetchChars()
-      }
-      catch(error){
-        console.log(error)
+        await charStore.fetchChars();
+      } catch (error) {
+        console.log(error);
       }
     });
-
 
     return {
       drawer: ref(false),
@@ -428,11 +418,11 @@ export default defineComponent({
         },
         {
           label: "Rogue",
-          url: "./src/assets/placeholder.png",
+          url: "./src/assets/rogue.png",
         },
         {
           label: "Wizard",
-          url: "./src/assets/quasar-logo-vertical.svg",
+          url: "./src/assets/wizard.png",
         },
       ],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
@@ -455,7 +445,7 @@ export default defineComponent({
       newChar.value = "";
     } */
 
-   /*  function removeChar(index) {
+    /*  function removeChar(index) {
       this.$q
         .dialog({
           title: "Confirm",
@@ -469,7 +459,6 @@ export default defineComponent({
           this.$q.notify("Deleted");
         });
     } */
-
   },
   /*   data() {
     return {
@@ -503,6 +492,4 @@ export default defineComponent({
   } */
 });
 </script>
-<style lang="sass" scoped>
-
-</style>
+<style lang="sass" scoped></style>
