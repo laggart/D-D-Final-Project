@@ -39,6 +39,23 @@ export const useCharStore = defineStore("characters", {
       catch (error) {
         console.log(error)
       }
+    },
+    async deleteChar(id) {
+      try {
+        const { data, error } = await supabase
+        .from('characters')
+        .delete()
+        .eq('id', id)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    },
+
+    async fetchCharsById () {
+      const { data: characters } = await supabase
+      .from('characters')
+      .select('id')
     }
 
   },

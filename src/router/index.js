@@ -1,4 +1,6 @@
 import { route } from 'quasar/wrappers'
+import { useUserStore } from "../stores/user";
+import { storeToRefs } from "pinia";
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
 
@@ -25,6 +27,12 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
+  Router.beforeEach((to)=> {
+    const userStore = useUserStore();
+    const { user } = storeToRefs(userStore);
+    if (to.meta.requiresAuth && !user.value) return "/";
+    
+  });
 
   return Router
 })

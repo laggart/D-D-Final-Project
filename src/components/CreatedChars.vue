@@ -97,8 +97,22 @@
           </q-list>
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn dense flat round color="dark" icon="las la-edit" />
-          <q-btn dense flat round color="dark" icon="las la-trash" />
+          <q-btn 
+          dense 
+          flat 
+          round 
+          color="dark" 
+          icon="las la-edit" 
+          :to="{name:'edit', params: { edit: character.id?.toString() || ''}}"
+          />
+          <q-btn 
+          dense 
+          flat 
+          round 
+          color="dark" 
+          icon="las la-trash"
+          @click="removeChar(character.id)" 
+          />
         </q-card-actions>
       </q-card>
 </template>
@@ -107,7 +121,7 @@
 import { defineComponent } from 'vue'
 import { storeToRefs } from "pinia";
 import { useUserStore } from "./../stores/user.js";
-
+import { useCharStore } from "./../stores/mychars.js";
 export default defineComponent({
   props: {
     character: Object
@@ -115,6 +129,7 @@ export default defineComponent({
   setup(props) {
     const userStore = useUserStore();
     const { user } = storeToRefs(userStore);
+    const charStore = useCharStore();
     const removeChar = async (charId) => {
       try {
         await charStore.deleteChar(charId);
@@ -123,6 +138,7 @@ export default defineComponent({
         console.log(error);
       }
     };
+
 
     return{
       user,

@@ -25,7 +25,7 @@
     >
       <q-scroll-area class="fit">
         <q-list padding>
-          <q-item clickable v-ripple>
+          <q-item to="./mycharacters" clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="inbox" />
             </q-item-section>
@@ -72,9 +72,14 @@
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import {ref, watch, defineComponent} from "vue"
+import { useUserStore } from "../stores/user";
+import { storeToRefs } from "pinia";
+
 
 export default defineComponent({
   setup() {
+    const userStore = useUserStore();
+    const { user } = storeToRefs(userStore);
     const $q = useQuasar();
     const router = useRouter();
     const miniState = ref(false);

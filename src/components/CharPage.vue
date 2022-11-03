@@ -268,15 +268,6 @@ export default defineComponent({
       }
     };
 
-    const removeChar = async (charId) => {
-      try {
-        await charStore.deleteChar(charId);
-        await charStore.fetchChars();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     let Chars = reactive([]);
 
     watch(
@@ -305,7 +296,6 @@ export default defineComponent({
       charClass,
       newChar,
       addChar,
-      removeChar,
       Chars,
       characters,
       charName,

@@ -18,10 +18,12 @@ const routes = [
     path: "/alt/",
     component: () => import("layouts/LandingPage.vue"),
     children: [
-      { path: "User", component: () => import("src/components/CharPage.vue") },
-      { path: "mycharacters", component: () => import("src/components/YourChars.vue"),
-      },
+      { path: "User", component: () => import("src/components/CharPage.vue")},
+      { path: "mycharacters", component: () => import("src/components/YourChars.vue") },
+      { path: ":edit", name:"edit" ,component: () => import("src/components/EditChar.vue")},
+      
     ],
+    meta: { requiresAuth: true }
   },
 
   // Always leave this as last one,
