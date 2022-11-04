@@ -53,7 +53,7 @@ export const useCharStore = defineStore("characters", {
       }
     },
 
-    async fetchCharsById () {
+    async fetchCharsById (id) {
       const { data: characters } = await supabase
       .from('characters')
       .select('*')

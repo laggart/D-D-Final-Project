@@ -102,7 +102,7 @@ export default defineComponent({
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
     const { charToEdit } = storeToRefs(charStore);
-    const charName = ref("");
+    const charName = ref(charToEdit.name);
     const charClass = ref(null);
     const charRace = ref(null);
     const strength = ref("");
@@ -111,7 +111,7 @@ export default defineComponent({
     const intelligence = ref("");
     const wisdom = ref("");
     const charisma = ref("");
-    const fetchCharsById = async() => {
+    const fetchChars = async() => {
       await charStore.fetchCharsById()
     };
     
@@ -168,7 +168,7 @@ export default defineComponent({
       wisdom,
       charisma,
       charClass,
-      characters,
+      /* newChar, */
       charName,
       charRace,
       editChar,
