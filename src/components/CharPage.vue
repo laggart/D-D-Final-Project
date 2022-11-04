@@ -229,7 +229,7 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const router = useRouter();
-    const url = ref("./../public/placeholder.png");
+    const url = ref("/src/assets/placeholder.png");
     const userStore = useUserStore();
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
@@ -324,7 +324,7 @@ export default defineComponent({
         },
         {
           label: "Wizard",
-          url: "./src/assets/wizard.png",
+          url: "/src/assets/wizard.png",
         },
       ],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
