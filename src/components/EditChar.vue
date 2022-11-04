@@ -139,15 +139,16 @@ export default defineComponent({
       charisma.value = charToEdit._object.charToEdit[0].charisma
       console.log(charToEdit.value)
     }
-
+    
+    
     onMounted(()=> getChar())
 
     const editChar = async () => {
       const charEdited = {
-        id: user.value.id,
+        id: editCharId,
         charName: charName.value,
         charRace: charRace.value,
-        class: charClass.value.label,
+        class: charClass.value,
         strength: strength.value,
         dexterity: dexterity.value,
         constitution: constitution.value,

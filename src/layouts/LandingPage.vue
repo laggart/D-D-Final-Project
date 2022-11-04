@@ -33,12 +33,12 @@
             <q-item-section> My Characters </q-item-section>
           </q-item>
 
-          <q-item active clickable v-ripple>
+          <q-item to="./User" active clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="star" />
+              <q-icon name="las la-magic" />
             </q-item-section>
 
-            <q-item-section> Favourites </q-item-section>
+            <q-item-section> Create New </q-item-section>
           </q-item>
 
           <q-item clickable v-ripple @click="signOut">
@@ -92,7 +92,7 @@ export default defineComponent({
       }
 
       $q.notify({
-        color: "dark",
+        color: 'green-4',
         textColor: "white",
         icon: "cloud_done",
         message: "You have succesfully logged out!",
