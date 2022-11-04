@@ -118,6 +118,7 @@ export default defineComponent({
     const intelligence = ref("");
     const wisdom = ref("");
     const charisma = ref("");
+    const charId = ref(route.params.edit)
 
     const fetchChars = async() => {
       await charStore.fetchChars()
@@ -145,7 +146,8 @@ export default defineComponent({
 
     const editChar = async () => {
       const charEdited = {
-        id: editCharId,
+        user_id: user.value.id,
+        id: charId.value,
         charName: charName.value,
         charRace: charRace.value,
         class: charClass.value,
@@ -157,8 +159,9 @@ export default defineComponent({
         charisma: charisma.value,
         deleteChar: false,
       };
+      console.log(charEdited)
       try {
-        await charStore.editChar(charEdited);
+        await charStore.editChar(charId.value, charEdited);
         await charStore.fetchChars();
         $q.notify({
             color: 'green-4',
