@@ -4,6 +4,7 @@ import { supabase } from '../supabase';
 export const useCharStore = defineStore("characters", {
   state: () => ({
     characters: null,
+    charToEdit: null,
   }),
   actions: {
     async fetchChars () {
@@ -58,9 +59,16 @@ export const useCharStore = defineStore("characters", {
       .select('*')
       .eq('id',id);
 
-      this.character = characters;
+      this.charToEdit = characters;
 
     },
+
+    async editChar(id) {
+      const { data: characters } = await supabase
+      .from('characters')
+      .update({ /*poner aqui todo el objeto y actualizar? o un watch a solo los cambios???*/ })
+      .eq('id', id)
+    }
 
   },
   persist: {

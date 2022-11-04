@@ -23,7 +23,6 @@
         label="Race"
       />
       <q-select
-        @change="imageChanger()"
         class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
         filled
         clearable
@@ -80,7 +79,7 @@
       />
       <q-list separator bordered>
         <div>
-          <q-btn label="Submit" type="submit" color="teal" />
+          <q-btn label="Update" type="submit" color="teal" />
         </div>
       </q-list>
     </q-form>
@@ -88,7 +87,7 @@
   </div>
 </template>
 <script>
-import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { ref, watch, defineComponent, reactive, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import { storeToRefs } from "pinia";
@@ -96,16 +95,15 @@ import { useUserStore } from "./../stores/user.js";
 import { useCharStore } from "./../stores/mychars.js";
 
 export default defineComponent({
+  
   setup() {
     const $q = useQuasar();
-    const router = useRouter();
     const userStore = useUserStore();
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
-    const { characters } = storeToRefs(charStore);
+    const { charToEdit } = storeToRefs(charStore);
     const charName = ref("");
     const charClass = ref(null);
-    const newChar = ref({});
     const charRace = ref(null);
     const strength = ref("");
     const dexterity = ref("");
@@ -113,9 +111,38 @@ export default defineComponent({
     const intelligence = ref("");
     const wisdom = ref("");
     const charisma = ref("");
-    const fetchChars = async() => {
-      await charStore.fetchChars()
+    const fetchCharsById = async() => {
+      await charStore.fetchCharsById()
+    };
+    
+    const route = useRoute();
+    const editCharId = route.params.edit 
+    console.log(editCharId)
+
+    const getChar = async() => {
+      await charStore.fetchCharsById(editCharId)
+      console.log(charToEdit.value)
     }
+
+    onMounted(()=> getChar())
+    
+    const editChar = async (charId) => {
+      try {
+        await charStore.editChar(charId);
+        await charStore.fetchChars();   
+      } catch (error) {
+        console.log(error);
+        $q.notify({
+            color: 'green-4',
+            textColor: 'white',
+            icon: 'cloud_done',
+            message: 'Submitted'
+          })
+      }
+
+
+
+    };
 
    /* 
       1. RECOGER EL ID DEL PERSONAJE POR ROUTER PARAMS
@@ -141,10 +168,10 @@ export default defineComponent({
       wisdom,
       charisma,
       charClass,
-      newChar,
       characters,
       charName,
       charRace,
+      editChar,
 
       options: ["Bard", "Cleric", "Fighter", "Ranger", "Rogue", "Wizard"],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
