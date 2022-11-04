@@ -3,7 +3,7 @@
   <div class="q-pa-md flex flex-center"
   style="min-width: 400px"
   >
-    <q-form @submit="addChar">
+    <q-form @submit="editChar">
       <q-input
         class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
         filled
@@ -79,7 +79,11 @@
       />
       <q-list separator bordered>
         <div>
-          <q-btn label="Update" type="submit" color="teal" />
+          <q-btn 
+          label="Update" 
+          type="submit" 
+          color="teal" 
+          />
         </div>
       </q-list>
     </q-form>
@@ -102,6 +106,9 @@ export default defineComponent({
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
     const { charToEdit } = storeToRefs(charStore);
+ 
+    const route = useRoute();
+    const charEdited = ref({});
     const charName = ref(charToEdit.name);
     const charClass = ref(null);
     const charRace = ref(null);
@@ -111,38 +118,67 @@ export default defineComponent({
     const intelligence = ref("");
     const wisdom = ref("");
     const charisma = ref("");
+
     const fetchChars = async() => {
-      await charStore.fetchCharsById()
+      await charStore.fetchChars()
     };
     
-    const route = useRoute();
     const editCharId = route.params.edit 
     console.log(editCharId)
 
     const getChar = async() => {
       await charStore.fetchCharsById(editCharId)
+      charName.value = charToEdit._object.charToEdit[0].name
+      charClass.value = charToEdit._object.charToEdit[0].class
+      charRace.value = charToEdit._object.charToEdit[0].race
+      strength.value = charToEdit._object.charToEdit[0].strength
+      dexterity.value = charToEdit._object.charToEdit[0].dexterity
+      constitution.value = charToEdit._object.charToEdit[0].constitution
+      intelligence.value = charToEdit._object.charToEdit[0].intelligence
+      wisdom.value = charToEdit._object.charToEdit[0].wisdom
+      charisma.value = charToEdit._object.charToEdit[0].charisma
       console.log(charToEdit.value)
     }
 
     onMounted(()=> getChar())
+
+    const editChar = async () => {
+      const charEdited = {
+        id: user.value.id,
+        charName: charName.value,
+        charRace: charRace.value,
+        class: charClass.value.label,
+        strength: strength.value,
+        dexterity: dexterity.value,
+        constitution: constitution.value,
+        intelligence: intelligence.value,
+        wisdom: wisdom.value,
+        charisma: charisma.value,
+        deleteChar: false,
+      };
+      try {
+        await charStore.editChar(charEdited);
+        await charStore.fetchChars();
+        $q.notify({
+            color: 'green-4',
+            textColor: 'white',
+            icon: 'cloud_done',
+            message: 'Update Submitted'
+          })
+      } catch (error) {
+        console.log(error)
+      }
+    };
     
-    const editChar = async (charId) => {
+    /* async (charId) => {
       try {
         await charStore.editChar(charId);
         await charStore.fetchChars();   
       } catch (error) {
         console.log(error);
-        $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'Submitted'
-          })
+        
       }
-
-
-
-    };
+    }; */
 
    /* 
       1. RECOGER EL ID DEL PERSONAJE POR ROUTER PARAMS
@@ -168,10 +204,11 @@ export default defineComponent({
       wisdom,
       charisma,
       charClass,
-      /* newChar, */
       charName,
       charRace,
+      charToEdit,
       editChar,
+      charEdited,
 
       options: ["Bard", "Cleric", "Fighter", "Ranger", "Rogue", "Wizard"],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],

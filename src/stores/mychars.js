@@ -63,10 +63,21 @@ export const useCharStore = defineStore("characters", {
 
     },
 
-    async editChar(id) {
+    async editChar(charEdited) {
+      console.log(charEdited)
       const { data: characters } = await supabase
       .from('characters')
-      .update({ /*poner aqui todo el objeto y actualizar? o un watch a solo los cambios???*/ })
+      .update({ user_id: charEdited.user_id,  
+        name: charEdited.charName, 
+        race: charEdited.charRace, 
+        class: charEdited.class, 
+        strength: charEdited.strength, 
+        dexterity: charEdited.dexterity, 
+        constitution: charEdited.constitution, 
+        intelligence: charEdited.intelligence,
+        wisdom: charEdited.wisdom,
+        charisma: charEdited.charisma,
+        favourite: false, })
       .eq('id', id)
     }
 
