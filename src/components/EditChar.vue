@@ -99,14 +99,14 @@ import { useUserStore } from "./../stores/user.js";
 import { useCharStore } from "./../stores/mychars.js";
 
 export default defineComponent({
-  
+
   setup() {
     const $q = useQuasar();
     const userStore = useUserStore();
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
     const { charToEdit } = storeToRefs(charStore);
- 
+
     const route = useRoute();
     const charEdited = ref({});
     const charName = ref(charToEdit.name);
@@ -118,13 +118,13 @@ export default defineComponent({
     const intelligence = ref("");
     const wisdom = ref("");
     const charisma = ref("");
-    const charId = ref(route.params.edit)
+    const charId = ref("")
 
     const fetchChars = async() => {
       await charStore.fetchChars()
     };
-    
-    const editCharId = route.params.edit 
+
+    const editCharId = route.params.edit
     console.log(editCharId)
 
     const getChar = async() => {
@@ -138,10 +138,10 @@ export default defineComponent({
       intelligence.value = charToEdit._object.charToEdit[0].intelligence
       wisdom.value = charToEdit._object.charToEdit[0].wisdom
       charisma.value = charToEdit._object.charToEdit[0].charisma
+      charId.value = charToEdit._object.charToEdit[0].id
       console.log(charToEdit.value)
     }
-    
-    
+
     onMounted(()=> getChar())
 
     const editChar = async () => {
@@ -150,7 +150,7 @@ export default defineComponent({
         id: charId.value,
         charName: charName.value,
         charRace: charRace.value,
-        class: charClass.value,
+        class: charClass.value.label,
         strength: strength.value,
         dexterity: dexterity.value,
         constitution: constitution.value,
@@ -159,7 +159,6 @@ export default defineComponent({
         charisma: charisma.value,
         deleteChar: false,
       };
-      /* console.log(charEdited) */
       try {
         await charStore.editChar(charId.value, charEdited);
         await charStore.fetchChars();
@@ -173,32 +172,8 @@ export default defineComponent({
         console.log(error)
       }
     };
-    
-    /* async (charId) => {
-      try {
-        await charStore.editChar(charId);
-        await charStore.fetchChars();   
-      } catch (error) {
-        console.log(error);
-        
-      }
-    }; */
-
-   /* 
-      1. RECOGER EL ID DEL PERSONAJE POR ROUTER PARAMS
-       {{ $route.params.id }}
-      2. HACER EL FETCH POR ID EN EL STORE DE mychars.js ## importante
-      3. IMPLEMENTAR LA FUNCION DE FETCH POR ID EN ESTA VISTA 
-      4. IGUALAR LOS ATRIBUTOS DE LPERSONAJE EN LAS VARIABLES REFERENCIADAS 
-      5. IGUALARLAS A LOS VMODELS  (QUE CREO QUE YA LO TIENES PLANTEADO ASI)
-      6. HACER FUNCION DE EDITAR (VERBO PUT) EN EL STORE DEL PERSONAJE mychars.js
-      7. LLAMARLA EN ESTA VISTA AL CLICKEAR EL BOTON DE ACTUALIZAR 
-      8. HACER UN FETCH GLOBAL AL CLICKEAR EN ESE MISMO BOTON PARA TRAERTE TODO ACTUALIZADO.
-      9. ENJOY
-   */
 
     fetchChars()
-    
 
     return {
       strength,

@@ -64,11 +64,9 @@ export const useCharStore = defineStore("characters", {
     },
 
     async editChar(id, charEdited) {
-      console.log(charEdited)
       const { data: characters } = await supabase
       .from('characters')
-      .update({ 
-        id: charEdited.id,  
+      .update({ user_id: charEdited.user_id,  
         name: charEdited.charName, 
         race: charEdited.charRace, 
         class: charEdited.class, 
