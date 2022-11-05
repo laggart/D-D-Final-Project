@@ -1,8 +1,5 @@
 <template>
-   
-  <div class="q-pa-md flex flex-center"
-  style="min-width: 400px"
-  >
+  <div class="q-pa-md flex flex-center" style="min-width: 400px">
     <q-form @submit="editChar">
       <q-input
         class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
@@ -79,15 +76,10 @@
       />
       <q-list separator bordered>
         <div>
-          <q-btn 
-          label="Update" 
-          type="submit" 
-          color="teal" 
-          />
+          <q-btn label="Update" type="submit" color="teal" />
         </div>
       </q-list>
     </q-form>
-   
   </div>
 </template>
 <script>
@@ -99,7 +91,6 @@ import { useUserStore } from "./../stores/user.js";
 import { useCharStore } from "./../stores/mychars.js";
 
 export default defineComponent({
-
   setup() {
     const $q = useQuasar();
     const userStore = useUserStore();
@@ -118,31 +109,31 @@ export default defineComponent({
     const intelligence = ref("");
     const wisdom = ref("");
     const charisma = ref("");
-    const charId = ref("")
+    const charId = ref("");
 
-    const fetchChars = async() => {
-      await charStore.fetchChars()
+    const fetchChars = async () => {
+      await charStore.fetchChars();
     };
 
-    const editCharId = route.params.edit
-    console.log(editCharId)
+    const editCharId = route.params.edit;
+    console.log(editCharId);
 
-    const getChar = async() => {
-      await charStore.fetchCharsById(editCharId)
-      charName.value = charToEdit._object.charToEdit[0].name
-      charClass.value = charToEdit._object.charToEdit[0].class
-      charRace.value = charToEdit._object.charToEdit[0].race
-      strength.value = charToEdit._object.charToEdit[0].strength
-      dexterity.value = charToEdit._object.charToEdit[0].dexterity
-      constitution.value = charToEdit._object.charToEdit[0].constitution
-      intelligence.value = charToEdit._object.charToEdit[0].intelligence
-      wisdom.value = charToEdit._object.charToEdit[0].wisdom
-      charisma.value = charToEdit._object.charToEdit[0].charisma
-      charId.value = charToEdit._object.charToEdit[0].id
-      console.log(charToEdit.value)
-    }
+    const getChar = async () => {
+      await charStore.fetchCharsById(editCharId);
+      charName.value = charToEdit._object.charToEdit[0].name;
+      charClass.value = charToEdit._object.charToEdit[0].class;
+      charRace.value = charToEdit._object.charToEdit[0].race;
+      strength.value = charToEdit._object.charToEdit[0].strength;
+      dexterity.value = charToEdit._object.charToEdit[0].dexterity;
+      constitution.value = charToEdit._object.charToEdit[0].constitution;
+      intelligence.value = charToEdit._object.charToEdit[0].intelligence;
+      wisdom.value = charToEdit._object.charToEdit[0].wisdom;
+      charisma.value = charToEdit._object.charToEdit[0].charisma;
+      charId.value = charToEdit._object.charToEdit[0].id;
+      console.log(charToEdit.value);
+    };
 
-    onMounted(()=> getChar())
+    onMounted(() => getChar());
 
     const editChar = async () => {
       const charEdited = {
@@ -150,7 +141,7 @@ export default defineComponent({
         id: charId.value,
         charName: charName.value,
         charRace: charRace.value,
-        class: charClass.value.label,
+        class: charClass.value,
         strength: strength.value,
         dexterity: dexterity.value,
         constitution: constitution.value,
@@ -163,17 +154,17 @@ export default defineComponent({
         await charStore.editChar(charId.value, charEdited);
         await charStore.fetchChars();
         $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'Update Submitted'
-          })
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          message: "Update Submitted",
+        });
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
-    fetchChars()
+    fetchChars();
 
     return {
       strength,
