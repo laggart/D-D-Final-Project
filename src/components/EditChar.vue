@@ -159,7 +159,7 @@ export default defineComponent({
         charisma: charisma.value,
         deleteChar: false,
       };
-      console.log(charEdited)
+      /* console.log(charEdited) */
       try {
         await charStore.editChar(charId.value, charEdited);
         await charStore.fetchChars();
