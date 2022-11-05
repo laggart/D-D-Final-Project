@@ -86,7 +86,7 @@ First I would like to thanks Ironhack for making this Bootcamp experience an awe
 
 (Alphabetical order)
 
-All the hard work that the put behind the courtains in orther to make us proud of our work and to really understand and learn! 
+All the hard work that they put behind the courtains in orther to make us proud of our work and to really understand and learn! 
 Awesome guys thank you very much!!
 
 I have to make a BIG mention to Pablo, you are the real MVP in this project, awesome guidance as a PM 
