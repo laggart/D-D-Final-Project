@@ -79,7 +79,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 First I would like to thanks Ironhack for making this Bootcamp experience an awesome one, where I can start? Thanking to our teaching Staff maybe?
 
 **Lead Teacher Marc Compte**
+
 **Assistan Teacher Pablo Mateos**
+
 **Assistan Teacher Christian Perdomo** 
 
 (Alphabetical order)
