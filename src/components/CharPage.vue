@@ -304,27 +304,27 @@ export default defineComponent({
       options: [
         {
           label: "Bard",
-          url: "./src/assets/bard.png",
+          url: "/src/assets/bard.png",
         },
         {
           label: "Cleric",
-          url: "./src/assets/cleric.png",
+          url: "/src/assets/cleric.png",
         },
         {
           label: "Fighter",
-          url: "./src/assets/fighter.png",
+          url: "/src/assets/fighter.png",
         },
         {
           label: "Ranger",
-          url: "./src/assets/ranger.png",
+          url: "/src/assets/ranger.png",
         },
         {
           label: "Rogue",
-          url: "./src/assets/rogue.png",
+          url: "/src/assets/rogue.png",
         },
         {
           label: "Wizard",
-          url: "./src/assets/wizard.png",
+          url: "/src/assets/wizard.png",
         },
       ],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
