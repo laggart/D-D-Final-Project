@@ -229,7 +229,7 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const router = useRouter();
-    const url = ref("./../src/assets/placeholder.png");
+    const url = ref("/src/assets/placeholder.png");
     const userStore = useUserStore();
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);

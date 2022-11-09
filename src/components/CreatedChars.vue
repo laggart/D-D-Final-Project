@@ -3,7 +3,7 @@
     <q-img
       class="q-ma-sm"
       v-if="character.class === 'Bard'"
-      :src="'/public/bard.png'"
+      :src="'/src/assets/bard.png'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -11,7 +11,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Cleric'"
-      :src="'/public/cleric.png'"
+      :src="'/src/assets/cleric.png'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -19,7 +19,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Fighter'"
-      :src="'/public/fighter.png'"
+      :src="'/src/assets/fighter.png'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -27,7 +27,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Ranger'"
-      :src="'/public/ranger.png'"
+      :src="'/src/assets/ranger.png'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -35,7 +35,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Rogue'"
-      :src="'/public/rogue.png'"
+      :src="'/src/assets/rogue.png'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -43,7 +43,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Wizard'"
-      :src="'/public/Wizard.png'"
+      :src="'/src/assets/wizard.png'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
