@@ -229,7 +229,9 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const router = useRouter();
-    const url = ref("/src/assets/placeholder.png");
+    const url = ref(
+      "https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/placeholder.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL3BsYWNlaG9sZGVyLnBuZyIsImlhdCI6MTY2ODE3NjA5MywiZXhwIjoxOTgzNTM2MDkzfQ.Qc9x3o1_lG18vlo8yVZlanHURPMXyGMR4Zf5puG5JHI"
+    );
     const userStore = useUserStore();
     const charStore = useCharStore();
     const { user } = storeToRefs(userStore);
@@ -304,27 +306,27 @@ export default defineComponent({
       options: [
         {
           label: "Bard",
-          url: "/src/assets/bard.png",
+          url: "https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/bard.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL2JhcmQucG5nIiwiaWF0IjoxNjY4MTc2MDk5LCJleHAiOjE5ODM1MzYwOTl9.JnmrvBGDhye9GhaB0kjw7phn_evGvLFuQh423sGux5o",
         },
         {
           label: "Cleric",
-          url: "/src/assets/cleric.png",
+          url: "https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/cleric.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL2NsZXJpYy5wbmciLCJpYXQiOjE2NjgxNzYwOTgsImV4cCI6MTk4MzUzNjA5OH0.DuVQS9UtcgG062tCcFSWb0H9OwyR_JF7YVGJftniML4",
         },
         {
           label: "Fighter",
-          url: "/src/assets/fighter.png",
+          url: "https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/Fighter.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL0ZpZ2h0ZXIucG5nIiwiaWF0IjoxNjY4MTc2MTA0LCJleHAiOjE5ODM1MzYxMDR9.sebdGlX0XfyGoSF4ShBZuq4cxZxBcMb0n-lzrcvLpHQ",
         },
         {
           label: "Ranger",
-          url: "/src/assets/ranger.png",
+          url: "https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/Ranger.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL1Jhbmdlci5wbmciLCJpYXQiOjE2NjgxNzYxMDIsImV4cCI6MTk4MzUzNjEwMn0.vwV-pXQDiQE0Ga7GqZVh9wGeAoNJoIvpAOE2nnYFppQ",
         },
         {
           label: "Rogue",
-          url: "/src/assets/rogue.png",
+          url: "https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/rogue.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL3JvZ3VlLnBuZyIsImlhdCI6MTY2ODE3NjA5MSwiZXhwIjoxOTgzNTM2MDkxfQ.3UQELoJ_DbZo6g8WvGwnC4iV2F4qpXaUpn8faejrNyE",
         },
         {
           label: "Wizard",
-          url: "/src/assets/wizard.png",
+          url: "https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/Wizard.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL1dpemFyZC5wbmciLCJpYXQiOjE2NjgxNzYxMDEsImV4cCI6MTk4MzUzNjEwMX0.LPp2GPpb_AqQJIigV-iZwRFu8V_7LD8H90LRTgMUqF8",
         },
       ],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],

@@ -3,7 +3,7 @@
     <q-img
       class="q-ma-sm"
       v-if="character.class === 'Bard'"
-      :src="'/src/assets/bard.png'"
+      :src="'https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/bard.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL2JhcmQucG5nIiwiaWF0IjoxNjY4MTc2MDk5LCJleHAiOjE5ODM1MzYwOTl9.JnmrvBGDhye9GhaB0kjw7phn_evGvLFuQh423sGux5o'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -11,7 +11,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Cleric'"
-      :src="'/src/assets/cleric.png'"
+      :src="'https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/cleric.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL2NsZXJpYy5wbmciLCJpYXQiOjE2NjgxNzYwOTgsImV4cCI6MTk4MzUzNjA5OH0.DuVQS9UtcgG062tCcFSWb0H9OwyR_JF7YVGJftniML4'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -27,7 +27,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Ranger'"
-      :src="'/src/assets/ranger.png'"
+      :src="'https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/Ranger.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL1Jhbmdlci5wbmciLCJpYXQiOjE2NjgxNzYxMDIsImV4cCI6MTk4MzUzNjEwMn0.vwV-pXQDiQE0Ga7GqZVh9wGeAoNJoIvpAOE2nnYFppQ'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -35,7 +35,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Rogue'"
-      :src="'/src/assets/rogue.png'"
+      :src="'https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/rogue.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL3JvZ3VlLnBuZyIsImlhdCI6MTY2ODE3NjA5MSwiZXhwIjoxOTgzNTM2MDkxfQ.3UQELoJ_DbZo6g8WvGwnC4iV2F4qpXaUpn8faejrNyE'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
@@ -43,7 +43,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Wizard'"
-      :src="'/src/assets/wizard.png'"
+      :src="'https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/Wizard.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL1dpemFyZC5wbmciLCJpYXQiOjE2NjgxNzYxMDEsImV4cCI6MTk4MzUzNjEwMX0.LPp2GPpb_AqQJIigV-iZwRFu8V_7LD8H90LRTgMUqF8'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
