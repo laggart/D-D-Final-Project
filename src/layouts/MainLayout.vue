@@ -11,7 +11,6 @@
       </q-toolbar>
 
       <q-tabs dense align="justify my-font">
-       <!--  <q-route-tab to="/DEMO" label="Demo" /> -->
         <q-route-tab to="/SignUp" label="Create an account" />
         <q-route-tab to="/SignIn" label="Sign In" />
       </q-tabs>

@@ -95,9 +95,3 @@ import { useUserStore } from './../stores/user.js'
     }
   })
 </script>
-<style>
-/* .signInForm {
-  background-color: rgb(195, 216, 216);
-  border-radius: 20px;
-} */
-</style>

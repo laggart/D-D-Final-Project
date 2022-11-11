@@ -112,34 +112,7 @@
               v-model="charName"
               label="New Character Name"
             >
-              <!-- <template v-slot:append>
-                <q-btn @click="charName" round dense flat icon="add" />
-              </template> -->
             </q-input>
-            <!--  <q-item
-              v-for="(char, index) in Chars"
-              :key="char.title"
-              @click="char.deleteChar = !char.deleteChar"
-              tag="label"
-              v-ripple
-            >
-              <q-item-section avatar>
-                <q-checkbox v-model="char.deleteChar" val="teal" color="teal" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ char.name }}</q-item-label>
-              </q-item-section>
-              <q-item-section side>
-                <q-btn
-                  @click.stop="removeChar(index)"
-                  round
-                  color="negative"
-                  icon="delete"
-                  size="xs"
-                />
-              </q-item-section>
-            </q-item> -->
-
             <q-select
               class="col-12-xs col-sm-6 q-pa-sm bg-secondary"
               filled
@@ -331,69 +304,11 @@ export default defineComponent({
       ],
       races: ["Dwarf", "Elf", "Halfling", "Human", "Gnome"],
     };
-    /* function addChar() {
-      
-      console.log(newChar.value);
-      Chars.push({
-        name: newChar.value,
-        race: charRace.value,
-        class: charClass.value,
-        strength: strength.value,
-        dexterity: dexterity.value, 
-        constitution: constitution.value, 
-        intelligence: intelligence.value,
-        wisdom: wisdom.value,
-        charisma: charisma.value,
-        deleteChar: false,
-      });
-      newChar.value = "";
-    } */
-
-    /*  function removeChar(index) {
-      this.$q
-        .dialog({
-          title: "Confirm",
-          message: "Would you delete this character?",
-          cancel: true,
-          persistent: true,
-        })
-        .onOk(() => {
-          console.log(this.Chars);
-          this.Chars.splice(index, 1);
-          this.$q.notify("Deleted");
-        });
-    } */
-  },
-  /*   data() {
-    return {
-      newChar: '',
-      Chars: [
     
-      ],
-    }; */
-  /*  }, */
-  /* methods: {
-    removeChar(index) {
 
-      this.$q.dialog({
-        title: 'Confirm',
-        message: 'Would you delete this character?',
-        cancel: true,
-        persistent: true
-      }).onOk(() => {
-        this.Chars.splice(index, 1)
-        this.$q.notify('Deleted')
-      })
-    },
-    addChar(){
-      this.Chars.push({
-        Name: this.newChar,
-        deleteChar: false
-      })
-      this.newChar = ''
-    },
-    
-  } */
+
+  },  
+
 });
 </script>
 <style lang="sass" scoped></style>

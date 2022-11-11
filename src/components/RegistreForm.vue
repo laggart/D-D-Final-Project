@@ -1,4 +1,5 @@
 <template>
+<div class="q-pa-md q-mt-lg q-mx-md flex flex-center">
   <q-form
         @submit.prevent="onSubmit"
         @reset="onReset"
@@ -52,6 +53,8 @@
       </div>
     </div>
   </q-form>
+  
+</div>
 </template>
 <script>
 import { ref } from "vue";
