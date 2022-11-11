@@ -19,7 +19,7 @@
     <q-img
       class="q-ma-sm"
       v-else-if="character.class === 'Fighter'"
-      :src="'/src/assets/fighter.png'"
+      :src="'https://dhgmmcwbveboncxmlqtd.supabase.co/storage/v1/object/sign/characters/Fighter.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJjaGFyYWN0ZXJzL0ZpZ2h0ZXIucG5nIiwiaWF0IjoxNjY4MTc2MTA0LCJleHAiOjE5ODM1MzYxMDR9.sebdGlX0XfyGoSF4ShBZuq4cxZxBcMb0n-lzrcvLpHQ'"
       style="height: 200px; max-width: 350px"
       fit="contain"
     >
