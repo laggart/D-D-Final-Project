@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-toolbar-title class="my-font text-h3">
           <q-avatar>
-            <p class="text-h6 text-weight-bold">PQ</p>
+            <p class="text-h6 text-weight-bold"> </p>
           </q-avatar>
           PixelQuest
         </q-toolbar-title>
