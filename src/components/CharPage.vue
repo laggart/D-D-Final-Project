@@ -179,7 +179,7 @@
             />
             <q-list separator bordered>
               <div>
-                <q-btn label="Submit" type="submit" color="teal" />
+                <q-btn label="Submit" type="submit" color="primary" />
               </div>
             </q-list>
           </q-form>

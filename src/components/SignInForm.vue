@@ -1,6 +1,9 @@
 <template>
   <div class="q-pa-md q-ma-md glass fixed-center" style="min-width: 300px">
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+    <q-form 
+        @submit="onSubmit" 
+        @reset="onReset" 
+        class="q-gutter-md">
       <q-input
         filled
         v-model="email"

@@ -1,22 +1,13 @@
 <template>
-<div class="q-pa-md q-mt-lg q-mx-md flex flex-center">
+<div class="q-pa-md q-ma-md glass fixed-center" style="min-width: 300px">
   <q-form
         @submit.prevent="onSubmit"
         @reset="onReset"
-        class="q-gutter-md glass "
+        class="q-gutter-md"
        style="max-width: 400px">
           
     <div class="q-pa-md">
-      <div class="q-gutter-md row items-start">
-        <q-input filled class="text-h5 q-my-md" v-model="name" label="Name" />
-        <q-input
-          filled
-          class="text-h5 q-my-md"
-          v-model="lastName"
-          label="Last Name"
-        />
-      </div>
-      <div class="q-gutter-md q-my-md row items-start">
+      <div class="q-gutter-md">
         <q-input
           filled
           class="q-my-md"
@@ -24,12 +15,6 @@
           type="email"
           hint="Please insert a valid mail"
           label="E-mail"
-        />
-        <q-input
-          filled
-          class="text-h5 q-my-md"
-          v-model="userName"
-          label="User Name"
         />
         <q-input
           v-model="password"
